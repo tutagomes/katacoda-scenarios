@@ -1,0 +1,97 @@
+{
+    "courses": [
+      {
+        "title": "Katacoda UI Layouts Example",
+        "description": "Example of different Katacoda UI Layouts. Also, an example of creating a Katacoda Course!",
+        "id": "uilayouts"
+      },
+      {
+        "title": "Katacoda Environments",
+        "description": "Example of selective available Katacoda Environments. More examples coming soon!",
+        "id": "environment-usages"
+      }
+    ],
+    "scenarios": [
+      {
+        "title": "Creating Your First Katacoda Scenario",
+        "description": "Learn how to create your first Katacoda scenario",
+        "id": "create-scenario-101"
+      },
+      {
+        "title": "Creating a Katacoda Course",
+        "description": "Learn how to create a collection of Katacoda scenarios into a course",
+        "id": "create-course"
+      },
+      {
+        "title": "Markdown Extensions",
+        "description": "Examples of how the Katacoda Markdown Extensions",
+        "id": "markdown-extensions"
+      },
+      {
+        "title": "Katacoda Placeholders for IP addresses and URLs",
+        "description": "Use Placeholders to dynamically replace values within your scenario content",
+        "id": "placeholders"
+      },
+      {
+        "title": "Clipboard Integration",
+        "description": "Understand how the Katacoda Clipboard integration",
+        "id": "clipboard"
+      },
+      {
+        "title": "Interactive Quiz",
+        "description": "Verify understand and key points by using an interactive quiz",
+        "id": "quiz"
+      },
+      {
+        "title": "Run Commands Automatically",
+        "description": "Automatically run commands in the foreground and background when a scenario starts",
+        "id": "run-commands-automatically"
+      },
+      {
+        "title": "Displaying Progress Spinner",
+        "description": "Display a friendly spinner while long running jobs are completed",
+        "id": "displaying-progress-spinner"
+      },
+      {
+        "title": "Verifying user actions during scenario",
+        "description": "Run checks to make sure the user can proceed. Scenario also offers user solutions if they struggle",
+        "id": "verified-steps"
+      },
+      {
+        "title": "Displaying Web UI",
+        "description": "Display a Web UI running on the environment",
+        "id": "displaying-web-ui"
+      },
+      {
+        "title": "Dashboard and Terminal Tabs",
+        "description": "Add Additional Tabs to the UI",
+        "id": "dashboard-tabs"
+      },
+      {
+        "title": "Dashboard and Terminal Tabs (IFrame)",
+        "description": "Add Additional Tabs to the UI with iFrame integration",
+        "id": "dashboard-tabs-iframe"
+      },
+      {
+        "title": "Visualise Environment Tab",
+        "description": "Learn how to add the Visualise Tab",
+        "id": "visualise-docker"
+      },
+      {
+        "title": "Upload File Assets",
+        "description": "Automatically upload file assets to the environment",
+        "id": "upload-assets"
+      },
+      {
+        "title": "Displaying Images",
+        "description": "Display images as part of the scenario",
+        "id": "displaying-images"
+      },
+      {
+        "title": "Credit where credit due",
+        "description": "Possible ways to provide credit for the content or ideas within the scenario",
+        "id": "credit-where-credit-due"
+      }
+    ]
+  }
+  

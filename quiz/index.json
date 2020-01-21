@@ -1,0 +1,27 @@
+{
+    "noindex": true,
+    "title": "Interactive Quiz",
+    "description": "Verify understand and key points by using an interactive quiz",
+    "details": {
+        "steps": [
+            {
+                "title": "Quiz",
+                "text": "step1.md"
+            }
+        ],
+        "intro": {
+            "text": "intro.md",
+            "credits": ""
+        },
+        "finish": {
+            "text": "finish.md"
+        }
+    },
+    "files": [],
+    "environment": {
+        "uilayout": "terminal"
+    },
+    "backend": {
+        "imageid": "ubuntu"
+    }
+}

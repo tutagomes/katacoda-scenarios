@@ -1,0 +1,20 @@
+{
+    "noindex": true,
+    "title": "Displaying Images",
+    "description": "Display images as part of the scenario",
+    "details": {
+        "steps": [
+            {
+                "title": "",
+                "text": "step1.md"
+            }
+        ]
+    },
+    "environment": {
+        "hideintro": true, 
+        "uilayout": "terminal"
+    },
+    "backend": {
+        "imageid": "ubuntu"
+    }
+}
