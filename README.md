@@ -1,4 +1,3 @@
-## Katacoda Scenario Examples
+Initial Commit
 
-View the examples at https://katacoda.com/scenario-examples
-
+0.1
