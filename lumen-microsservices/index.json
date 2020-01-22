@@ -34,7 +34,9 @@
     }
   },
   "environment": {
-    "uilayout": "editor-terminal"
+    "uilayout": "editor-terminal",
+    "showdashboard": true,
+    "dashboards": [{"name": "API Gateway", "port": 9000}, {"name": "Graphana", "port": 3000}, {"name": "Prometheus", "port": 9090}]
   },
   "backend": {
     "imageid": "docker"
