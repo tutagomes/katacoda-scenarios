@@ -1,0 +1,1 @@
+Nestes poucos minutos, conseguimos subir uma aplicação de microsserviço em Laravel/Lumen com um Gateway em NodeJS além de iniciar um Swarm e realizar o deploy de um stack de monitoramento, facilitando a análise da saúde de nosso servidor e aplicação como um todo!

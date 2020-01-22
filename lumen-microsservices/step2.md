@@ -1,4 +1,4 @@
-Agora, vamos dar uma olhada no código fonte do arquivo `docker-compose.yml` localizado na pasta `cd MicroDia4`{{execute}}:
+Agora, vamos dar uma olhada no código fonte do arquivo `docker-compose.yml` localizado na pasta MicroDia4:
 ```
 version: '3'
 services:
