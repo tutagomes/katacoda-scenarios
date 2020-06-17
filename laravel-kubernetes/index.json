@@ -1,0 +1,34 @@
+{
+    "title": "laravel-kubernetes",
+    "description": "Uma abordagem simples para execução de uma aplicação Laravel em Kubernetes",
+    "difficulty": "medium",
+    "time": "30 minutes",
+    "details": {
+        "steps": [
+            {
+                "title": "Verificando Minikube",
+                "text": "step1.md"
+            },
+            {
+                "title": "Executando aplicação",
+                "text": "step2.md"
+            },
+            {
+                "title": "Expondo para o mundo",
+                "text": "step3.md"
+            }
+        ],
+        "intro": {
+            "text": "intro.md"
+        },
+        "finish": {
+            "text": "finish.md"
+        }
+    },
+    "environment": {
+        "uilayout": "terminal-terminal"
+    },
+    "backend": {
+        "imageid": "minikube"
+    }
+}
