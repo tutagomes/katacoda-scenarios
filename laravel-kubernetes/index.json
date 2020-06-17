@@ -16,6 +16,10 @@
             {
                 "title": "Expondo para o mundo",
                 "text": "step3.md"
+            },
+            {
+                "title": "Dashboard",
+                "text": "step4.md"
             }
         ],
         "intro": {
@@ -26,7 +30,7 @@
         }
     },
     "environment": {
-        "uilayout": "terminal-terminal",
+        "uilayout": "terminal-editor",
         "showdashboard": true,
         "dashboards": [{"name": "Interface", "port": 9000}]
     },
