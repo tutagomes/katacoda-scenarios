@@ -12,7 +12,9 @@ Primeiro, será necessário executar o comando de configurar a chave da aplicaç
 
 Segundo, vamos executar um comando para expor as portas:
 
-`kubectl port-forward deployment/exemplo-laravel 9000:80 --address 0.0.0.0`{{execute}
+`kubectl expose deployment exemplo-laravel --port=80 --type=NodePort`{{execute}}
+
+`kubectl port-forward deployment/exemplo-laravel 9000:80 --address 0.0.0.0`{{execute}}
 
 E agora, podemos acessar nosso serviço através da URL:
 

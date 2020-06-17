@@ -26,7 +26,9 @@
         }
     },
     "environment": {
-        "uilayout": "terminal-terminal"
+        "uilayout": "terminal-terminal",
+        "showdashboard": true,
+        "dashboards": [{"name": "Interface", "port": 9000}]
     },
     "backend": {
         "imageid": "minikube"
