@@ -26,9 +26,3 @@ https://[[HOST_SUBDOMAIN]]-9000-[[KATACODA_HOST]].environments.katacoda.com
 
 
 
-E caso queira apagar os deployments e serviços:
-
-`kubectl delete deployment exemplo-laravel`{{execute}}
-
-`kubectl delete services exemplo-laravel`{{execute}}
-

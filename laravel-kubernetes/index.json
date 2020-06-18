@@ -30,7 +30,7 @@
         }
     },
     "environment": {
-        "uilayout": "terminal-editor",
+        "uilayout": "editor-terminal",
         "showdashboard": true,
         "dashboards": [{"name": "Interface", "port": 9000}]
     },
