@@ -1,16 +1,6 @@
-Agora, vamos fazer um deploy "de verdade", não apenas um contêiner manual.
+Vamos então experimentar um pouco com o rollback:
 
-Vamos primeiro apagar os deployments e serviços:
-
-`kubectl delete deployment exemplo-laravel`{{execute}}
-
-`kubectl delete services exemplo-laravel`{{execute}}
-
-Vamos criar um arquivo `travel-deployment.yml` com o comando
-
-`touch travel-deployment.yml`{{execute}}
-
- com o conteúdo:
+Vamos alterar o conteúdo do nosso deploy para:
 
 ```yaml
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
@@ -29,7 +19,7 @@ spec:
     spec:
       containers:
       - name: travel-laravel
-        image: registry.gitlab.com/arthurgomesfaria/laravelcompleto:master
+        image: registry.gitlab.com/arthurgomesfaria/laravelcompleto:latest
         ports:
         - containerPort: 80
         lifecycle:
@@ -46,15 +36,27 @@ Vamos ver então o status:
 
 `kubectl get pods`{{execute}}
 
-Deveria então haver 2 réplicas do serviço.
 
-Podemos também alterar as réplicas no arquivo e executar novamente o:
 
-`kubectl apply -f travel-deployment.yml` {{execute}}
+Tudo certo, correto? Agora, imagine que houve algum problema com o deploy, é possível reverter para a versão antiga de forma bem simples:
+
+`kubectl rollout history deployment travel-deployment`{{execute}}
+
+`kubectl rollout history deployment travel-deployment --revision=2`{{execute}}
+
+`kubectl rollout undo deployment travel-deployment`{{execute}}
+
+Ou caso queira fazer um rollback para uma versão específica:
+
+`kubectl rollout undo deployment travel-deployment --to-revision=1`{{execute}}
+
+
 
 E novamente, podemos acessar-los habilitando o port-foward:
 
 `kubectl port-forward deployment/exemplo-laravel 9000:80 --address 0.0.0.0`{{execute}}
+
+
 
 E então através da URL:
 

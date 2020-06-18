@@ -20,6 +20,14 @@
             {
                 "title": "Dashboard",
                 "text": "step4.md"
+            },
+            {
+                "title": "Deploy",
+                "text": "step5.md"
+            },
+            {
+                "title": "Rollback",
+                "text": "step6.md"
             }
         ],
         "intro": {
