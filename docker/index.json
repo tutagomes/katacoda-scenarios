@@ -1,6 +1,6 @@
 {
     "title": "Princípios Docker",
-    "description": "Princípios",
+    "description": "Princípios do Docker e criação de imagens",
     "difficulty": "easy",
     "time": "10 minutes",
     "files": [

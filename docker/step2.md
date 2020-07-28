@@ -1,5 +1,5 @@
 Com uma imagem disponível, agora nós podemos disparar um conteiner. Para isso rode o seguinte comando:
-`docker run --name nginx1 nginx`{{execute}}
+`docker run -d --name nginx1 nginx`{{execute}}
 
 Após você disparar o seu conteiner, você pode examinar os conteineres que foram iniciados com o seguinte comando:
 

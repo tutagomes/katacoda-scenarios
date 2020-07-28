@@ -1,0 +1,1 @@
+Neste laboratório, vamos explorar um pouco a criação de um serviço utilizando o Docker Stack Deploy para subir contêineres em um Swarm
