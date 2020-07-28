@@ -1,0 +1,1 @@
+Parabéns! Você executou com sucesso os comandos básicos para a manipulação de uma imagem Docker e criação de uma própria!

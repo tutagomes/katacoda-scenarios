@@ -1,0 +1,47 @@
+{
+    "title": "Princípios Docker",
+    "description": "Princípios",
+    "difficulty": "easy",
+    "time": "10 minutes",
+    "files": [
+        "package.json",
+        "server.js",
+        "Dockerfile"
+    ],
+    "details": {
+        "steps": [
+            {
+                "title": "Baixando Imagens",
+                "text": "step1.md"
+            },
+            {
+                "title": "Executando Imagens",
+                "text": "step2.md"
+            },
+            {
+                "title": "Parando um Container",
+                "text": "step3.md"
+            },
+            {
+                "title": "Criando uma imagem",
+                "text": "step4.md"
+            },
+            {
+                "title": "Executando uma imagem local",
+                "text": "step5.md"
+            }
+        ],
+        "intro": {
+            "text": "intro.md"
+        },
+        "finish": {
+            "text": "finish.md"
+        }
+    },
+    "environment": {
+        "uilayout": "editor-terminal"
+    },
+    "backend": {
+        "imageid": "docker"
+    }
+}
