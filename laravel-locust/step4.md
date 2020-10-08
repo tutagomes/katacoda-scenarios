@@ -8,7 +8,7 @@ pip3 install locust
 Mas como estamos em ambiente virtualizado e sabemos que já existe um contêiner pronto para nós, basta executar o comando:
 
 
-`docker run -p 8089:8089 -v $PWD/locust:/mnt/locust --network=network-todo locustio/locust -f /mnt/locust/teste_exemplo.py -H http://teste-carga_laravel_1:80`{{execute}}
+`docker run -p 8089:8089 -v $PWD/locust:/mnt/locust --network=network-todo locustio/locust -f /mnt/locust/teste_exemplo.py -H http://laravel-locust-test_laravel_1:80`{{execute}}
 
 > Note que o contêiner é executado já na rede interna dos nossos serviços, para facilitar a comunicação e não precisar ficar passando por vários resolutores de DNS
 
