@@ -42,6 +42,6 @@
         "uilayout": "editor-terminal"
     },
     "backend": {
-        "imageid": "docker"
+        "imageid": "ubuntu:2004"
     }
 }
