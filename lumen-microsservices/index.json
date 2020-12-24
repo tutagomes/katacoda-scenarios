@@ -39,6 +39,6 @@
     "dashboards": [{"name": "API Gateway", "port": 9000}, {"name": "Graphana", "port": 3000}, {"name": "Prometheus", "port": 9090}]
   },
   "backend": {
-    "imageid": "docker"
+    "imageid": "ubuntu:2004"
   }
 }

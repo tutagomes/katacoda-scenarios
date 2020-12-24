@@ -15,3 +15,7 @@ Antes de ir para o próximo passo, vamos já deixar nossa imagem construída com
 `cd teste-carga-k6-postman`{{execute}}
 
 `docker-compose build`{{execute}}
+
+E também, iremos precisar do Node instalado, mas como estamos num Ubuntu, basta executar:
+
+`sudo apt install nodejs -y`{{execute}}
