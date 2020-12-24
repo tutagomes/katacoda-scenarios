@@ -15,6 +15,10 @@ Executemos então um teste com 5 usuários durante 30 segundos com o comando:
 
 `k6 run --vus 5 --duration 30s k6-v1-script.js -o influxdb=http://localhost:8086/k6`{{execute}}
 
+Quem sabe com mais usuários?
+
+`k6 run --vus 15 --duration 30s k6-v1-script.js -o influxdb=http://localhost:8086/k6`{{execute}}
+
 E então, analisamos o resultado na nossa inteface Grafana
 
 https://[[HOST_SUBDOMAIN]]-3030-[[KATACODA_HOST]].environments.katacoda.com
