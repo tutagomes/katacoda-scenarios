@@ -1,0 +1,4 @@
+O objetivo foi demonstrar através de alguns experimentos como podemos tirar proveito de coleções já criadas no Postman e utilizá-las para retirar métricas e resultados das nossas aplicações, sem necessidade de aprender a escrever um teste específico, uma nova linguagem de programação ou até mesmo a mexer no JMeter (além de ter que acostumar com uma interface anos 2000). Assim, fica até fácil executar alguns testes nas suas APIs próprias.
+
+
+Além disso, espero ter dado algumas ideias de como implementá-los agora e começar a medir a performance da sua aplicação, principalmente comparando versões diferentes!
