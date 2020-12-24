@@ -18,3 +18,15 @@ Executemos então um teste com 5 usuários durante 30 segundos com o comando:
 E então, analisamos o resultado na nossa inteface Grafana
 
 https://[[HOST_SUBDOMAIN]]-3030-[[KATACODA_HOST]].environments.katacoda.com
+
+E claro, não precisamos utilizar somente uma dashboard, podemos adicionar várias outras montadas pela comunidade!
+
+Como por exemplo:
+
+- [k6 Load Testing Results by km](https://grafana.com/grafana/dashboards/10660)
+
+- [k6 Load Testing Resultsby smockvavelsky](https://grafana.com/grafana/dashboards/10553)
+
+- [k6 Load Testing Resultsby Stian Øvrevåge](https://grafana.com/grafana/dashboards/4411)
+
+[E como eu importo uma dashboard?](https://grafana.com/docs/grafana/latest/dashboards/export-import/#importing-a-dashboard)

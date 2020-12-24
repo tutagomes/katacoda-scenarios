@@ -19,3 +19,16 @@ Antes de ir para o próximo passo, vamos já deixar nossa imagem construída com
 E também, iremos precisar do Node instalado, mas como estamos num Ubuntu, basta executar:
 
 `sudo apt install nodejs -y`{{execute}}
+
+E claro, nosso K6:
+
+`sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61`{{execute}}
+
+
+` echo "deb https://dl.bintray.com/loadimpact/deb stable main" | sudo tee -a /etc/apt/sources.list`{{execute}}
+
+
+`sudo apt-get update`{{execute}}
+
+
+`sudo apt-get install k6`{{execute}}
