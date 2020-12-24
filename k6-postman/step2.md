@@ -4,9 +4,16 @@ Agora, com a imagem pronta para ser executada, podemos iniciar nossos serviços 
 
 Assim, os serviços são executados em segundo plano e podemos utilizar o mesmo terminal para executar os comandos para testes.
 
-Neste passo, vamos também instalar o comando:
+Neste passo, vamos também instalar as ferramentas:
 
 `npm install -g postman-to-k6 --unsafe-perm=true`{{execute}}
+
+`npm install -g newman --unsafe-perm=true`{{execute}}
+
+E também, se quisermos testar nossa coleção com o Newman, podemos executar o comando:
+
+`newman run Postman-Teste-V1.json`{{execute}}
+
 
 > [O que a flag --unsafe-perm faz?](https://geedew.com/What-does-unsafe-perm-in-npm-actually-do/)
 
