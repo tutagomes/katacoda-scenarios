@@ -1,0 +1,62 @@
+{
+    "title": "angular-crud",
+    "description": "Um simples CRUD em Angular",
+    "difficulty": "medium",
+    "time": "20 minutes",
+    "details": {
+        "steps": [
+            {
+                "title": "Instalando Dependências",
+                "text": "step1.md"
+            },
+            {
+                "title": "Criando Projeto",
+                "text": "step2.md"
+            },
+            {
+                "title": "Subindo Backend",
+                "text": "step3.md"
+            },
+            {
+                "title": "Criando Componentes",
+                "text": "step4.md"
+            },
+            {
+                "title": "Configurando Módulo",
+                "text": "step5.md"
+            },
+            {
+                "title": "Configurando Rotas e Endpoints",
+                "text": "step6.md"
+            },
+            {
+                "title": "Criando Interface e Serviços",
+                "text": "step7.md"
+            },
+            {
+                "title": "Configurando Módulo Principal",
+                "text": "step8.md"
+            },
+            {
+                "title": "Listando Clientes",
+                "text": "step9.md"
+            },
+            {
+                "title": "Criando Cliente",
+                "text": "step10.md"
+            }
+        ],
+        "intro": {
+            "text": "intro.md"
+        },
+        "finish": {
+            "text": "finish.md"
+        }
+    },
+    "environment": {
+        "uilayout": "vscode-terminal-split"
+    },
+    "backend": {
+        "imageid": "node"
+    }
+}
