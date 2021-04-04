@@ -6,9 +6,11 @@ Já existem algumas coleções preparadas para executarmos nosso exemplo, mas se
 
 
 Navegar até a pasta baixada
+
 `cd json-mock-collection`{{execute "T2"}}
 
 E executar nosso servidor
+
 `json-server --watch db_clients_30.json --host 0.0.0.0`{{execute "T2"}}
 
 E agora, podemos navegar até a URL e validar o funcionamento. Ela deve retornar um texto JSON com 30 clientes!

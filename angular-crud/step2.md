@@ -3,15 +3,15 @@ Agora, com tudo instalado e configurado, podemos começar a executar alguns coma
 O que o comando `ng` pode fazer?
 `ng generate --help`{{execute "T1"}}
 
-Bom, vamos começar então criando um projeto com o nome `angular-crud``
+Bom, vamos começar então criando um projeto com o nome `angular-crud`
 
-`ng new angular-crud`
+`ng new angular-crud`{{execute "T1"}}
 
 E selecionar as opções
 
 ```
-Stricter Type Checking Y
-Angular Router Y
+Stricter Type Checking - Y
+Angular Router - Y
 CSS
 ```
 
@@ -28,5 +28,3 @@ E finalmente podemos ver a cara da aplicação básica:
 E acessá-la através da URL!
 https://[[HOST_SUBDOMAIN]]-4200-[[KATACODA_HOST]].environments.katacoda.com
 
-
-{{execute interrupt "T1"}}

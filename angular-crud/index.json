@@ -57,6 +57,6 @@
         "uilayout": "vscode-terminal-split"
     },
     "backend": {
-        "imageid": "node"
+        "imageid": "nodejs:12"
     }
 }
