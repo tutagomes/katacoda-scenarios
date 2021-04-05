@@ -1,6 +1,6 @@
 Agora, vamos começar a realmente implementar um código "personalizado". Iniciando pela nossa interface de Cliente, que será responsável por definir os campos e propriedades das nossas entidades:
 
-{{open angular-crud/src/app/clientes/client.ts}}
+`angular-crud/src/app/clientes/client.ts`{{open}}
 
 ```ts
 
@@ -20,7 +20,7 @@ export interface Cliente {
 E vamos aproveitar e já implementar todo nosso serviço de comunicação com o nosso backend
 
 
-{{open angular-crud/src/app/clientes/cliente.service.ts}}
+`angular-crud/src/app/clientes/cliente.service.ts`{{open}}
 
 src/app/clientes/cliente.service.ts
 
@@ -100,7 +100,7 @@ export class ClienteService {
 
 Agora, é uma boa hora de limpar toda a tela inicial da aplicação e deixá-la somente com o nosso injetor de rotas!
 
-{{open angular-crud/src/app/app.component.html}}
+`angular-crud/src/app/app.component.html`{{open}}
 
 ```html
 

@@ -1,6 +1,6 @@
 Agora, vamos aproveitar o embalo e já configurar todas as nossas rotas!
 
-{{open angular-crud/src/app/clientes/clientes-routing.module.ts}}
+`angular-crud/src/app/clientes/clientes-routing.module.ts`{{open}}
 
 ```ts
 
@@ -31,7 +31,7 @@ Agora, vamos aproveitar o embalo e já configurar todas as nossas rotas!
 
 E aproveitar também e já configurar o nosso ambiente:
 
-{{open angular-crud/src/environments/environment.ts}}
+`angular-crud/src/environments/environment.ts`{{open}}
 
 > Para facilitar: https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com
 

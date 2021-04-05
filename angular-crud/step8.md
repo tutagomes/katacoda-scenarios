@@ -1,7 +1,7 @@
 Agora, vamos injetar nosso módulo de clientes no nosso módulo raiz do Angular, para que ele possa ser utilizado na nossa aplicação:
 
 
-{{open angular-crud/src/app/app.module.ts}}
+`angular-crud/src/app/app.module.ts`{{open}}
 
 ```ts
 import { NgModule } from '@angular/core';

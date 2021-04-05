@@ -2,7 +2,7 @@ E agora vamos para a parte interessante! Listar e remover clientes! Para isso, v
 
 Vamos começar implementando as funcionalidades do componente:
 
-{{open angular-crud/src/app/clientes/home/home.component.ts}}
+`angular-crud/src/app/clientes/home/home.component.ts`{{open}}
 
 ```ts
 
@@ -41,6 +41,8 @@ export class HomeComponent implements OnInit {
 ```{{copy}}
 
 E também nosso HTML
+
+`angular-crud/src/app/clientes/home/home.component.html`{{open}}
 
 ```html
 <div>

@@ -1,6 +1,6 @@
 E por último, vamos adicionar Clientes!
 
-{{open angular-crud/src/app/clientes/create/create.component.ts}}
+`angular-crud/src/app/clientes/create/create.component.ts`{{open}}
 
 ```ts
 
@@ -48,7 +48,7 @@ export class CreateComponent implements OnInit {
 
 E nosso HTML
 
-{{ open angular-crud/src/app/clientes/create/create.component.html }}
+`angular-crud/src/app/clientes/create/create.component.html`{{open}}
 
 ```html
  <div>

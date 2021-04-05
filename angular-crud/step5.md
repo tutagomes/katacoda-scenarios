@@ -2,7 +2,7 @@ Pronto, agora vamos à parte que interessa! A programação!
 
 Vamos começar com nosso primeiro arquivo, o módulo de clientes. Ele será responsável por centralizar todo nosso subsistema.
 
-{{open angular-crud/src/app/clientes/cliente.module.ts}}
+`angular-crud/src/app/clientes/cliente.module.ts`{{open}}
 
 ```ts
 
