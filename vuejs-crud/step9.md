@@ -6,5 +6,5 @@ Dica: utilize um método para carregamento!
 
 Pronto! Agora podemos acessar nossa URL e validar se todos nossos clientes estão lá listados!
 
-https://[[HOST_SUBDOMAIN]]-4200-[[KATACODA_HOST]].environments.katacoda.com/clientes/home
+https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com/clientes/home
 

@@ -9,6 +9,6 @@ E finalmente garantir que o NodeJS esteja instalado!
 
 `sudo apt-get upgrade nodejs -y`{{execute "T1"}}
 
-Assim, fica fácil instalar nossos pacotes globalmente, como o Quasar/CLI e o Json-server!
+Assim, fica fácil instalar nossos pacotes globalmente, como o Json-server!
  
-`npm install -g @quasar/cli json-server`{{execute "T1"}}
+`npm install -g json-server`{{execute "T1"}}

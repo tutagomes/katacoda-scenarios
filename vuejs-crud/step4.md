@@ -1,6 +1,6 @@
 Pronto, agora com nosso backend funcionando, podemos voltar ao que interessa!
 
-Vamos começar criando nossos componentes Angular, sendo cada um respnsável por uma funcionalidade no nosso módulo de Clientes
+Vamos começar criando nossos componentes VueJS, sendo cada um respnsável por uma funcionalidade no nosso módulo de Clientes
 
 Criamos então todas nossas páginas
 
