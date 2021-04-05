@@ -1,0 +1,58 @@
+{
+    "title": "vuejs-crud",
+    "description": "Um simples CRUD em VueJS",
+    "difficulty": "medium",
+    "time": "20 minutes",
+    "details": {
+        "steps": [
+            {
+                "title": "Instalando Dependências",
+                "text": "step1.md"
+            },
+            {
+                "title": "Criando Projeto",
+                "text": "step2.md"
+            },
+            {
+                "title": "Subindo Backend",
+                "text": "step3.md"
+            },
+            {
+                "title": "Criando Páginas",
+                "text": "step4.md"
+            },
+            {
+                "title": "Configurando Rotas",
+                "text": "step5.md"
+            },
+            {
+                "title": "Configurando APIs",
+                "text": "step6.md"
+            },
+            {
+                "title": "Criando Página Principal",
+                "text": "step7.md"
+            },
+            {
+                "title": "Criando Cliente",
+                "text": "step8.md"
+            },
+            {
+                "title": "Editando Cliente",
+                "text": "step9.md"
+            }
+        ],
+        "intro": {
+            "text": "intro.md"
+        },
+        "finish": {
+            "text": "finish.md"
+        }
+    },
+    "environment": {
+        "uilayout": "vscode-terminal-split"
+    },
+    "backend": {
+        "imageid": "nodejs:12"
+    }
+}
