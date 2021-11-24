@@ -11,16 +11,24 @@
         },
         "steps": [
             {
-                "title": "Step 1",
+                "title": "Executando ambiente",
                 "text": "step1.md"
             },
             {
-                "title": "Step 2",
+                "title": "Instalando dependências",
                 "text": "step2.md"
             },
             {
-                "title": "Step 3",
+                "title": "Configurando o Playwright",
                 "text": "step3.md"
+            },
+            {
+                "title": "Criando um primeiro teste",
+                "text": "step4.md"
+            },
+            {
+                "title": "Criando mais testes",
+                "text": "step5.md"
             }
         ],
         "intro": {

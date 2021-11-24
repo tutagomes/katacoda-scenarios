@@ -42,7 +42,7 @@ Agora, vamos criar um novo teste, aproveitando e adicionando interações com o 
 ```ts
 import { test, expect } from '@playwright/test';
 
-test.describe('testes de tarefas', () => {
+test.describe('testes criação de tarefas', () => {
   test('criar tarefa clicando no botao', async ({ page }) => {
     // Navegando até a página que queremos testar
     await page.goto('http://localhost');
@@ -50,6 +50,7 @@ test.describe('testes de tarefas', () => {
     await page.fill('.field .control input', 'Minha Tarefa');
     // Clicando no botão de adicionar
     const botao = page.locator('.field .control .button');
+    botao.click();
     // Esperamos que o campo esteja vazio
     await page.screenshot({ path: 'screenshot.png', fullPage: true });
     const campo = page.locator('.field .control input');
@@ -79,9 +80,17 @@ test.describe('testes de tarefas', () => {
 
 ```
 
+
+
+Links úteis:
+
 - [Sintaxe de seletores](https://playwright.dev/docs/selectors)
 - [Sintaxe de Inputs](https://playwright.dev/docs/input)
 - [Sintaxe de Arquivos](https://playwright.dev/docs/downloads)
 - [Sintaxe de Capturas de Tela](https://playwright.dev/docs/screenshots)
 - [Sintaxe de Vídeos](https://playwright.dev/docs/videos)
+
+
+
+Agora, vamos criar um código para testar se, ao clicar em uma tarefa, a caixa de seleção do lado esquerdo se torna preenchida.
 
