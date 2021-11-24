@@ -1,37 +1,28 @@
-`npm init`{{execute}}
+Agora, vamos começar com a diversão.
 
+
+
+Para que seja possível executar os testes com Playwright, é necessário que estejam encapsulados dentro de um projeto Node.
+
+Vamos começar então criando um projeto vazio:
+
+`npm init -y`{{execute}}
+
+
+
+E instalando a dependência do framework como dependência de desenvolvimento, para que no futuro, ele não seja empacotado na versão de produção:
 `npm i -D @playwright/test`{{execute}}
 
-`export PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=false`{{execute}}
 
+
+E finalmente, vamos instalar as dependências (os navegadores que vamos utilizar)
 `npx playwright install`{{execute}}
 
-`mkdir tests`{{execute}}
+E como estamos em um Ubuntu simples, vamos precisar também instalar algumas dependências do Playwright
 
-`touch tests/example.spec.js`{{execute}}
+`npx playwright install-deps`{{execute}}
 
-`touch tests/playwright.config.js`{{execute}}
 
-```sh
-cat << EOF > /tests/playwright.config.js
-// playwright.config.ts
-import { PlaywrightTestConfig, devices } from '@playwright/test';
 
-const config: PlaywrightTestConfig = {
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  use: {
-    trace: 'on-first-retry',
-  },
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    }
-  ],
-};
-export default config;
-EOF
-```{{execute}}
+Note que o comando instalará todos os navegadores disponíveis, mas poderemos alterar em qual deles nossos testes serão executados.
 
-`npx playwright test`{{execute}}
