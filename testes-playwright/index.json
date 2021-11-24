@@ -6,7 +6,7 @@
     "details": {
         "assets": {
             "host01": [
-                { "file": "testes-playwright/assets/index.html", "target": "/root/website/index.html" }
+                { "file": "index.html", "target": "/root/website/index.html" }
             ]
         },
         "steps": [
