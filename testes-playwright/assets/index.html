@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Hello Bulma!</title>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+      <style>
+         .separator {
+         width: 100%;
+         background-color: rgba(0,0,0,0.1);
+         height: 1px;
+         margin-top: 15px;
+         margin-bottom: 15px;
+         }
+         .tarefa {
+         cursor: pointer;
+         }
+         .tarefa:hover {
+         box-shadow: 0 0.9em 1em -0.125em rgb(10 10 10 / 20%), 0 0 0 1px rgb(10 10 10 / 2%);
+         }
+         .tarefa-done {
+         text-decoration: line-through;
+         background-color: rgba(0,0,0,0.1);
+         }
+         .tarefa-done strong {
+         color: grey !important;
+         }
+      </style>
+   </head>
+   <body style="background-color: #fafafa; height: 100vh">
+      <section class="section">
+         <div class="container" style="width: 40%;" id="app">
+            <div class="card">
+               <div class="card-content">
+                  <p class="title" style="width: 100%; text-align: center">
+                     Tarefas
+                  </p>
+                  <div class="media">
+                     <div class="media-content" style="width: 100%;">
+                        <div class="field has-addons" style="width: 100%;">
+                           <div class="control" style="width: 100%;">
+                              <input class="input" v-model="titulo" v-on:keyup.enter="addTarefa" type="text" placeholder="Título da Tarefa">
+                           </div>
+                           <div class="control">
+                              <a class="button is-primary" :disabled="!titulo.length" @click="addTarefa">
+                              Adicionar
+                              </a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="separator">
+                  </div>
+                  <div class="content">
+                     <div v-for="(tarefa, index) in tarefas" :class="'box tarefa ' + (tarefa.done ? 'tarefa-done' : '')" style="position: relative;" @click.stop="toggleTarefa(index)">
+                        <button class="delete" @click.stop="deleteTarefa(index)" style="position: absolute; top: 10px; right: 10px"></button>
+                        <article class="media">
+                           <div class="media-left">
+                              <div class="content">
+                                 <p>
+                                    <input type="checkbox" :checked="tarefa.done" @click.stop="toggleTarefa(index)">
+                                 </p>
+                              </div>
+                           </div>
+                           <div class="media-content">
+                              <div class="content">
+                                 <p>
+                                    <strong>{{tarefa.titulo}}</strong>
+                                 </p>
+                              </div>
+                           </div>
+                        </article>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <script>
+         const app = new Vue({
+           el: '#app',
+           data: {
+               tarefas: [],
+               titulo: '',
+               message: '<h1>Hello!</h1>'
+           },
+           methods: {
+               addTarefa () {
+                   this.tarefas.push({
+                       titulo: this.titulo,
+                       done: false
+                   })
+                   this.titulo = ''
+               },
+               toggleTarefa (index) {
+                   this.tarefas[index].done = !this.tarefas[index].done
+               },
+               deleteTarefa (index) {
+                   this.tarefas.splice(index, 1)
+               }
+           }
+         });
+      </script>
+   </body>
+</html>
