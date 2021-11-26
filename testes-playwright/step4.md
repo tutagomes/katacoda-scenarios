@@ -18,7 +18,8 @@ test('teste inicial', async ({ page }) => {
   await expect(title).not.toHaveText('Titulo Ruim');
 });
 
-test.fixme('teste de novo titulo', async ({ page }) => {
+test('teste de novo titulo', async ({ page }) => {
+  test.fixme();
   // Navegando até a página que queremos testar
   await page.goto('http://localhost')
   //Buscando seletor de título

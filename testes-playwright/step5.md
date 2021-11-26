@@ -7,6 +7,8 @@ Para resolver o problema do passo anterior, podemos utilizar o código abaixo:
 
 
 ```ts
+import { test, expect } from '@playwright/test';
+
 test('marcar como concluida', async ({ page }) => {
       await page.goto('http://localhost')
 
