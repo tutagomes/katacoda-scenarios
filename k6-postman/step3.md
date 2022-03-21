@@ -3,7 +3,7 @@ Vamos executar nosso primeiro teste de carga. De maneira bem simples, se acessar
 
 Para começar, vamos converter nossa coleção de testes Postman para executá-las com o k6 através do comando:
 
-`postman-to-k6 Postman-Teste-V1.json -o k6-v1-script.js`{{execute}}
+`npx postman-to-k6 Postman-Teste-V1.json -o k6-v1-script.js`{{execute}}
 
 Teremos então um script pronto para ser rodado. O próximo passo é dimensionar a quantidade de usuários e o tempo que nosso teste irá durar. Assim, podemos medir quantas requisições são completadas em, por exemplo, 30 segundos e validar se houve algum problema durante o processo.
 

@@ -6,7 +6,7 @@ Assim, os serviços são executados em segundo plano e podemos utilizar o mesmo 
 
 Neste passo, vamos também instalar as ferramentas:
 
-`npm install -g postman-to-k6 --unsafe-perm=true`{{execute}}
+`npm install -D @apideck/postman-to-k6`{{execute}}
 
 `npm install -g newman --unsafe-perm=true`{{execute}}
 
