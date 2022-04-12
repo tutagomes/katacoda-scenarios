@@ -32,8 +32,7 @@ const config: PlaywrightTestConfig = {
 };
 export default config;
 EOF
-```
-{{execute}}
+```{{execute}}
 
 > Note que na configuração acima, estamos apenas utilizando o navegador Chrome. Também é possível configurar para utilizar o WebKit (Safari) ou o Firefox, quando for necessário garantir a consistência da aplicação nos mais variados ambientes.
 
@@ -41,7 +40,7 @@ EOF
 
 E finalmente, podemos executar o comando e rodar os testes:
 
-`npx playwright test`{{execute}}
+`npx playwright test --config=tests/playwright.config.ts`{{execute}}
 
 E o resultado deve ser:
 
