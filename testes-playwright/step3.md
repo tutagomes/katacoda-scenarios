@@ -34,6 +34,8 @@ export default config;
 EOF
 ```{{execute}}
 
+
+
 > Note que na configuração acima, estamos apenas utilizando o navegador Chrome. Também é possível configurar para utilizar o WebKit (Safari) ou o Firefox, quando for necessário garantir a consistência da aplicação nos mais variados ambientes.
 
 
