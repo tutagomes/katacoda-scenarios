@@ -30,6 +30,8 @@ Podemos examinar que temos agora três conteineres operando. O primeiro não est
 `curl docker:81`{{execute}}
 
 O acesso externo está disponível nos links:
+
 Porta 8080: [click here]({{TRAFFIC_HOST1_8080}})
+
 Porta 8081: [click here]({{TRAFFIC_HOST1_8081}})
 
