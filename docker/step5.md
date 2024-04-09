@@ -1,13 +1,31 @@
-Agora com a imagem criada, podemos visualizá-la através do comando:
+Vamos então executar!
 
-`docker images`{{execute}}
+`docker run --name myapp -d -p 8085:8080 cenario/tasks:latest`{{execute}}
 
-E então, podemos executá-la através do comando:
+O acesso externo está disponível nos links:
 
-`docker run --name mynodeapp -d -p 9090:8080 nodelocal`{{execute}}
+Porta 8085: [click here]({{TRAFFIC_HOST1_8085}})
 
-Porta 9090: https://[[HOST_SUBDOMAIN]]-9090-[[KATACODA_HOST]].environments.katacoda.com/
+E claro, também é possível montar o volume na nossa imagem:
 
-E para pará-lo, basta executar o comando:
+`docker run --name myappwithvolume -d -p 8086:8080 -v ${PWD}:/app bitnami/nginx:latest`
 
-`docker stop mynodeapp`{{execute}}
+Note que no comando anterior, montamos a pasta local do site na pasta interna do contêiner. Então qualquer modificação também é refletida lá dentro. Por exemplo, podemos também adicionar um arquivo .html
+
+`touch outro.html`{{execute}}
+
+E vamos abrir o arquivo no editor ao lado e colar o conteúdo.
+
+```html
+<html>
+    <body>
+        <h1>
+            Outro arquivo em HTML!
+        </h1>
+    </body>
+</html>
+```
+
+E acessar o link, validando que nosso arquivo está de fato no servidor:
+
+Porta 8085: [click here]({{TRAFFIC_HOST1_8085}}/outro.html)

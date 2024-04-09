@@ -9,6 +9,12 @@
         "Dockerfile"
     ],
     "details": {
+        "assets": {
+            "host01": [
+                { "file": "index.html", "target": "/root/website" },
+                { "file": "Dockerfile", "target": "/root/website" }
+            ]
+        },
         "steps": [
             {
                 "title": "Baixando Imagens",
@@ -29,6 +35,10 @@
             {
                 "title": "Executando uma imagem local",
                 "text": "step5.md"
+            },
+            {
+                "title": "Executando um comando",
+                "text": "step6.md"
             }
         ],
         "intro": {
@@ -42,6 +52,9 @@
         "uilayout": "editor-terminal"
     },
     "backend": {
-        "imageid": "ubuntu:2004"
+        "imageid": "ubuntu"
+    },
+    "interface": {
+        "layout": "ide"
     }
 }
