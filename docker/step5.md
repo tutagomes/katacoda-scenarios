@@ -4,11 +4,11 @@ Vamos então executar!
 
 O acesso externo está disponível nos links:
 
-Porta 8085: [click here]({{TRAFFIC_HOST1_8085}})
+Porta 8085: [click here]({{TRAFFIC_HOST1_8085}}/index.html)
 
 E claro, também é possível montar o volume na nossa imagem:
 
-`docker run --name myappwithvolume -d -p 8086:8080 -v ${PWD}:/app bitnami/nginx:latest`
+`docker run --name myappwithvolume -d -p 8086:8080 -v ${PWD}:/app bitnami/nginx:latest`{{execute}}
 
 Note que no comando anterior, montamos a pasta local do site na pasta interna do contêiner. Então qualquer modificação também é refletida lá dentro. Por exemplo, podemos também adicionar um arquivo .html
 
@@ -28,4 +28,4 @@ E vamos abrir o arquivo no editor ao lado e colar o conteúdo.
 
 E acessar o link, validando que nosso arquivo está de fato no servidor:
 
-Porta 8085: [click here]({{TRAFFIC_HOST1_8085}}/outro.html)
+Porta 8086: [click here]({{TRAFFIC_HOST1_8085}}/outro.html)

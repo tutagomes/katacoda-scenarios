@@ -12,7 +12,7 @@ E listar o conteúdo
 
 Vamos também identificar o que há dentro do Dockerfile
 
-`cat Dockerfile`
+`cat Dockerfile`{{execute}}
 
 E por último, vamos executar a build da imagem:
 
