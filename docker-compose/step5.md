@@ -33,7 +33,7 @@ services:
     ports:
       - "1433:1433"
 
-```
+```{{copy}}
 
 E claro, será necessário adicionar um código fonte para buscar as informações do banco. Para isso, vamos criar um arquivo na pasta `Controllers` chamado `LivrosController.cs`. Para simplificar (mesmo não sendo uma boa prática) vamos colocar grande parte do código neste arquivo:
 
@@ -101,7 +101,7 @@ namespace app.Controllers
         }
     }
 }
-```
+```{{copy}}
 
 E vamos adicionar um trecho de código na linha 9 do arquivo `Program.cs`:
 
@@ -109,7 +109,7 @@ E vamos adicionar um trecho de código na linha 9 do arquivo `Program.cs`:
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-```
+```{{copy}}
 
 E adicionar ao topo do arquivo `Program.cs`:
 ```cs
@@ -119,16 +119,17 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using app.Controllers;
 
-```
+```{{copy}}
 
 E também vamos precisar instalar algumas dependências. Para isso, vamos executar novamente o container docker como executamos no primeiro passo:
 
 `docker run --rm -v ./:/app --workdir=/app --entrypoint=/bin/bash -t -i -p 5000:5000  mcr.microsoft.com/dotnet/sdk:8.0`{{execute}}
 
 E vamos adicionar as dependências:
+
 `dotnet add package Microsoft.EntityFrameworkCore.SqlServer`{{execute}}
 
-Pronto! Agora podemos sair do container, compilar nossa imagem docker e executar o docker-compose (com docker-compose up -d)!
+Pronto! Agora podemos **sair do container**, **compilar nossa imagem** docker e **executar o docker-compose** (com docker-compose up -d)!
 
 Porta 8080: [Acesso ao WebAPI de Livros]({{TRAFFIC_HOST1_8080}}/api/Livros)
 

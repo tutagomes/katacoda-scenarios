@@ -45,7 +45,7 @@ BEGIN
         ('Assembleia dos Algoritmos', 'Paula Gomes', 175, '978-4567890136', 170, 4.6),
         ('Segredos do Scala', 'Antônio Neto', 305, '978-4567890137', 90, 4.5);
 END
-```
+```{{copy}}
 
 E vamos alterar o docker-compose adicionando um comando para que esse script seja executado após 30 segundos:
 
@@ -80,6 +80,8 @@ services:
         /opt/mssql/bin/sqlservr & sleep 30;
         /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'senha_qualquer#_1' -d master -i /docker-entrypoint-initdb.d/init.sql;
         wait
-```
+```{{copy}}
 
 E então podemos executar novamente a composição de contêineres, primeiro com `docker-compose down` e depois com `docker-compose up`
+
+Porta 8080: [Acesso ao WebAPI de Livros]({{TRAFFIC_HOST1_8080}}/api/Livros)

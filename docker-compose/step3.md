@@ -36,7 +36,7 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "apidemo.dll"]
-```
+```{{copy}}
 
 E vamos executar o comando `docker build -t cenario/api-teste:latest .`
 

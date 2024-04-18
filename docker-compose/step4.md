@@ -31,7 +31,7 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "app.dll"]
-```
+```{{copy}}
 
 E o comando para construir a imagem:
 
@@ -42,6 +42,7 @@ E o comando para rodar a imagem:
 
 `docker run -p 8080:8080 --rm cenario/api-teste:latest`{{execute}}
 
+Porta 8080: [Acesso ao WebAPI]({{TRAFFIC_HOST1_8080}}/WeatherForecast)
+
 Para sair, vamos apertar CTRL+C.
 
-Porta 8080: [Acesso ao WebAPI]({{TRAFFIC_HOST1_8080}}/WeatherForecast)

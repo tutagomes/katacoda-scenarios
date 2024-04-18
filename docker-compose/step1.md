@@ -14,28 +14,36 @@ Assim, temos uma imagem preparada para cada objetivo que precisarmos, reduzindo 
 ---
 ### Passo 1:
 
-Vamos primeiro criar uma pasta local, podemos chamá-la de `app`. Depois, vamos executar um contêiner docker na versão do `SDK 7 do dotnet` de forma interativa e criar uma aplicação nova com o comando `dotnet new webapi`.
+Vamos primeiro criar uma pasta local, podemos chamá-la de `app`.
+
+Depois, vamos executar um contêiner docker na versão do `SDK 7 do dotnet` de forma interativa
+  
+  `docker run --rm -v ./app:/app --entrypoint=/bin/bash -t -i -p 5000:5000  mcr.microsoft.com/dotnet/sdk:7.0`{{execute}}
 
 As versões das imagens são:
 - SDK 6 - mcr.microsoft.com/dotnet/sdk:6.0
 - SDK 7 - mcr.microsoft.com/dotnet/sdk:7.0
 - SDK 8 - mcr.microsoft.com/dotnet/sdk:8.0
 
-E podemos utilizar os parâmetros `-v ./app:/app`, `-it`, `-p 5000:5000`, `--entrypoint=/bin/bash` para exeuctar nosso contêiner com dotnet.
+E vamos utilizar os parâmetros `-v ./app:/app`, `-it`, `-p 5000:5000`, `--entrypoint=/bin/bash` para exeuctar nosso contêiner com dotnet.
+
+### Passo 2
+
+Após subir o contêiner mapeando a pasta, vamos navegar até a pasta `/app` e criar uma aplicação nova com o comando `dotnet new webapi`.
+
+Em seguida, vamos executar o comando `dotnet run --urls=http://0.0.0.0:5000` para rodar nossa aplicação.
 
 Porta 5000: [click here]({{TRAFFIC_HOST1_5000}}/WeatherForecast)
-
-Após subí-lo, vamos navegar até a pasta `/app` e executar o comando `dotnet run --urls=http://0.0.0.0:5000`.
 
 Após a criação, vamos validar se os arquivos estão presentes através do nosso navegador a direita.
 
 Vamos sair do terminal com o comando `exit` e você pode perceber que voltamos para o terminal do ambiente (não mais dentro do container).
 
-### Passo 2:
+### Passo 3:
 
 Agora, vamos executar o mesmo comando para subir o container, mas dessa vez com a imagem do sdk 6, navegar até a pasta `/app` e tentar executar o comando `dotnet run`. O que acontece?
 
-### Passo 3:
+### Passo 4:
 
 Agora, vamos executar o mesmo comando para subir o container com SDK 8, navegando até o diretório `/app` e executando o comando `dotnet run --urls=http://0.0.0.0:5000`. O que acontece?
 

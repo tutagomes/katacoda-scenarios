@@ -1,6 +1,6 @@
 {
     "title": "Docker Compose",
-    "description": "Um simples exemplo de docker compose com balanceamento de carga",
+    "description": "Um simples exemplo de docker compose aplicações .NET",
     "difficulty": "easy",
     "time": "45 minutes",
     "details": {

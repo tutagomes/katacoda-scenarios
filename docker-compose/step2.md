@@ -28,11 +28,11 @@ Pronto, agora podemos começar:
 
 1. Executando o comando para criar uma aplicação
 
-   `dotnet new webapi`
+   `dotnet new webapi`{{execute}}
 
 1. Executando a aplicação 
 
-    `dotnet run --urls=http://0.0.0.0:5000`
+    `dotnet run --urls=http://0.0.0.0:5000`{{execute}}
 1. Validando o acesso:
     
     Porta 5000: [Acesso ao WebAPI]({{TRAFFIC_HOST1_5000}}/WeatherForecast)
@@ -42,7 +42,7 @@ Pronto, agora podemos começar:
 1. Saindo do contêiner
    
    `exit`{{execute}}
-
+---
 1. Executando o SDK 6:
 
    `docker run --rm -v ./app:/app --workdir=/app --entrypoint=/bin/bash -t -i -p 5000:5000  mcr.microsoft.com/dotnet/sdk:6.0`{{execute}}
@@ -59,7 +59,8 @@ Pronto, agora podemos começar:
    
    `exit`{{execute}}
 
-1. Executando o SDK 6:
+---
+1. Executando o SDK 8:
 
    `docker run --rm -v ./app:/app --workdir=/app --entrypoint=/bin/bash -t -i -p 5000:5000  mcr.microsoft.com/dotnet/sdk:8.0`{{execute}}
 1. Verificando a versão do `dotnet` (deve ser a 6)
@@ -80,5 +81,5 @@ Pronto, agora podemos começar:
    
    `exit`{{execute}}
 
-*Não esqueça de alterar o TargetFramework do arquivo app.csproj para 8.0!*
+*Não esqueça de alterar o TargetFramework do arquivo `app.csproj` para `8.0`!*
 

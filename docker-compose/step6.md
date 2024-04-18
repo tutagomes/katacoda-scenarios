@@ -33,7 +33,7 @@ services:
       ACCEPT_EULA: "Y"
     ports:
       - "1433:1433"
-```
+```{{copy}}
 
 1. Executando o SDK 7:
 
