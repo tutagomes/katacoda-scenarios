@@ -28,4 +28,4 @@ E vamos abrir o arquivo no editor ao lado e colar o conteúdo.
 
 E acessar o link, validando que nosso arquivo está de fato no servidor:
 
-Porta 8086: [click here]({{TRAFFIC_HOST1_8085}}/outro.html)
+Porta 8086: [click here]({{TRAFFIC_HOST1_8086}}/outro.html)

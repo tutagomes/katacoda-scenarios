@@ -1,15 +1,44 @@
-Vamos começar baixando o código exemplo de um pequeno servidor NodeJS com a configuração já feita, incluindo o NGinx (nosso balanceador).
+## Múltiplas versões do .NET Core
 
-Este repositório está pronto para ser testado, por isso já existe nele a pasta Testes. Mas por enquanto, vamos só executar a aplicação mesmo
-`git clone https://github.com/tutagomes/servidor-confiabilidade.git`{{execute}}
+Este passo explora a utilização de containers Docker para gerenciar múltiplas versões do .NET Core simultaneamente, o que é crucial em ambientes onde diferentes versões da plataforma precisam ser testadas ou usadas em paralelo. Docker facilita o gerenciamento dessas versões, permitindo que você crie, teste e execute aplicações sem necessitar instalar múltiplas SDKs na sua máquina. Isso não apenas economiza tempo, mas também reduz conflitos entre versões e simplifica a configuração de ambientes de desenvolvimento e testes.
 
-Navegando até a pasta do Servidor:
+As imagens .NET Core estão dividas em:
+- SDK (contendo todas as bibliotecas para compilação do framework/projeto)
+- ASP.NET (com todas as dependências para aplicações web)
+- Runtime (com todas as dependências para aplicações .NET padrão)
 
-`cd servidor-confiabilidade/Servidor`{{execute}}
+Assim, temos uma imagem preparada para cada objetivo que precisarmos, reduzindo o tamanho final e os passos de compilação. Normalmente, quando estamos programando em uma versão do .NET e precisamos atualizá-la, é preciso instalar os pacotes no nosso computador em paralelo. Dessa forma, não é possível testar de forma isolada se a aplicação que estamos validando funciona nas versões mais recentes (ou antigas) do framework.
 
-Vamos primeiro criar a imagem do nosso servidor principal, hospedado em uma imagem NodeJS, bem simples e rápido! Ela será responsável por controlar toda a nossa aplicação. Criamos então com o comando:
+**E é isso que vamos testar hoje!**
 
-`docker build -t teste-calculo-node .`
+---
+### Passo 1:
 
-Caso queira aprofundar um pouco no código, pode-se perceber que a aplicação faz o uso de um banco de dados SQLite, salvo em disco. Portanto, os dados não serão sincronizados entre as instâncias executadas.
-Se a sincronia de dados for necessária, é possível utilizar um banco de dados externo ou então montar um arquivo sqlite único para todos os contêineres.
+Vamos primeiro criar uma pasta local, podemos chamá-la de `app`. Depois, vamos executar um contêiner docker na versão do `SDK 7 do dotnet` de forma interativa e criar uma aplicação nova com o comando `dotnet new webapi`.
+
+As versões das imagens são:
+- SDK 6 - mcr.microsoft.com/dotnet/sdk:6.0
+- SDK 7 - mcr.microsoft.com/dotnet/sdk:7.0
+- SDK 8 - mcr.microsoft.com/dotnet/sdk:8.0
+
+E podemos utilizar os parâmetros `-v ./app:/app`, `-it`, `-p 5000:5000`, `--entrypoint=/bin/bash` para exeuctar nosso contêiner com dotnet.
+
+Porta 5000: [click here]({{TRAFFIC_HOST1_5000}}/WeatherForecast)
+
+Após subí-lo, vamos navegar até a pasta `/app` e executar o comando `dotnet run --urls=http://0.0.0.0:5000`.
+
+Após a criação, vamos validar se os arquivos estão presentes através do nosso navegador a direita.
+
+Vamos sair do terminal com o comando `exit` e você pode perceber que voltamos para o terminal do ambiente (não mais dentro do container).
+
+### Passo 2:
+
+Agora, vamos executar o mesmo comando para subir o container, mas dessa vez com a imagem do sdk 6, navegar até a pasta `/app` e tentar executar o comando `dotnet run`. O que acontece?
+
+### Passo 3:
+
+Agora, vamos executar o mesmo comando para subir o container com SDK 8, navegando até o diretório `/app` e executando o comando `dotnet run --urls=http://0.0.0.0:5000`. O que acontece?
+
+Porta 5000: [click here]({{TRAFFIC_HOST1_5000}}/WeatherForecast)
+
+*Só avance quando terminar a execução!*

@@ -2,21 +2,38 @@
     "title": "Docker Compose",
     "description": "Um simples exemplo de docker compose com balanceamento de carga",
     "difficulty": "easy",
-    "time": "15 minutes",
+    "time": "45 minutes",
     "details": {
         "steps": [
             {
-                "title": "Preparando",
+                "title": "Docker e Versões",
                 "text": "step1.md"
             },
             {
-                "title": "Configurando",
+                "title": "Respostas Docker",
                 "text": "step2.md"
             },
             {
-                "title": "Executando",
+                "title": "Build Multi-Stage",
                 "text": "step3.md"
+            },
+            {
+                "title": "Respostas Multi-Stage",
+                "text": "step4.md"
+            },
+            {
+                "title": "Docker Compose",
+                "text": "step5.md"
+            },
+            {
+                "title": "Respostas Compose",
+                "text": "step6.md"
+            },
+            {
+                "title": "Populando SQL",
+                "text": "step7.md"
             }
+            
         ],
         "intro": {
             "text": "intro.md"
