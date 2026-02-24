@@ -10,29 +10,56 @@ Primeiro, vamos parar e remover os containers anteriores para liberar a porta e 
 
 `docker stop minha-app && docker rm minha-app`{{execute}}
 
-### Rodando com volume
+### A armadilha do volume simples
 
-Agora vamos rodar a imagem montando a pasta atual como volume dentro do container:
+A primeira ideia seria montar a pasta atual diretamente no container:
+
+```bash
+docker run --name minha-app -d -p 9090:8080 \
+  -v ${PWD}:/usr/src/app \
+  minha-app:1.0
+```
+
+Vamos tentar:
 
 `docker run --name minha-app -d -p 9090:8080 -v ${PWD}:/usr/src/app minha-app:1.0`{{execute}}
 
-Vamos entender a flag `-v`:
+Verifique os logs:
 
-| Parte | Significado |
+`docker logs minha-app`{{execute}}
+
+O container **não conseguiu iniciar**. O erro indica que o módulo `express` não foi encontrado. Mas nós instalamos ele no build com `RUN npm install` — o que aconteceu?
+
+O problema é que o volume **sobrescreve completamente** a pasta `/usr/src/app` do container com o conteúdo da sua máquina. E na sua máquina não existe `node_modules/` — ele só existia dentro da imagem. Resultado: o `node_modules` sumiu e o Node.js não encontra o Express.
+
+Vamos remover esse container:
+
+`docker rm -f minha-app`{{execute}}
+
+### A solução: proteger o node_modules
+
+Para montar o código sem perder o `node_modules`, usamos um **volume anônimo** que preserva a pasta de dependências do container:
+
+`docker run --name minha-app -d -p 9090:8080 -v ${PWD}:/usr/src/app -v /usr/src/app/node_modules minha-app:1.0`{{execute}}
+
+Vamos entender as duas flags `-v`:
+
+| Flag | Significado |
 |---|---|
-| `${PWD}` | O diretório atual da sua máquina (host) |
-| `:` | Separador entre origem e destino |
-| `/usr/src/app` | O diretório dentro do container (nosso WORKDIR) |
+| `-v ${PWD}:/usr/src/app` | Monta a pasta atual da máquina no WORKDIR do container |
+| `-v /usr/src/app/node_modules` | Cria um volume anônimo para `node_modules`, impedindo que seja sobrescrito |
 
-O que isso faz: o conteúdo de `/usr/src/app` dentro do container agora é **espelhado** com a pasta atual da sua máquina. Qualquer arquivo que você criar, editar ou apagar em um lado, aparece no outro.
+O segundo `-v` (sem `:`) diz ao Docker: "mantenha o `node_modules` que já está na imagem — não sobrescreva com o do host".
 
-### Testando na prática
+Verifique que agora funciona:
 
-Verifique que a aplicação está rodando:
+`docker logs minha-app`{{execute}}
 
 `curl localhost:9090`{{execute}}
 
-Agora, edite o `server.js` no editor ao lado e mude a mensagem `Olá, Docker!` para algo como `Olá, Volume!`. Salve o arquivo.
+### Testando na prática
+
+Agora edite o `server.js` no editor ao lado e mude a mensagem `Olá, Docker!` para algo como `Olá, Volume!`. Salve o arquivo.
 
 Como o Node.js não recarrega automaticamente, precisamos reiniciar o container para ele reler o arquivo:
 
@@ -46,7 +73,7 @@ A mensagem mudou — **sem rebuild da imagem!**
 
 ### Verificando o espelhamento
 
-Vamos criar um arquivo na máquina host e verificar que ele aparece dentro do container:
+O volume funciona nos dois sentidos. Vamos criar um arquivo na máquina host e verificar que ele aparece dentro do container:
 
 `echo "arquivo criado no host" > teste-volume.txt`{{execute}}
 
@@ -58,27 +85,12 @@ O contrário também funciona — criando dentro do container, aparece na sua m�
 
 `cat dentro.txt`{{execute}}
 
-### Cuidado com o node_modules
-
-Quando montamos a pasta inteira com `-v ${PWD}:/usr/src/app`, o conteúdo da máquina host **sobrescreve** o que estava no container — incluindo o `node_modules/` que foi instalado durante o build. Se sua máquina não tiver um `node_modules/` local, a aplicação vai quebrar.
-
-Para contornar isso, uma técnica comum é usar um **volume anônimo** para proteger o `node_modules` do container:
-
-```bash
-docker run --name minha-app -d -p 9090:8080 \
-  -v ${PWD}:/usr/src/app \
-  -v /usr/src/app/node_modules \
-  minha-app:1.0
-```
-
-O segundo `-v /usr/src/app/node_modules` (sem `:`) diz ao Docker: "mantenha o `node_modules` que já está no container — não sobrescreva com o do host".
-
 ### Limpando
 
-Remova o arquivo de teste e o container:
+Remova os arquivos de teste e o container:
 
 `rm -f teste-volume.txt dentro.txt`{{execute}}
 
 `docker stop minha-app && docker rm minha-app`{{execute}}
 
-> **Resumo:** Volumes são essenciais para desenvolvimento local com Docker. Eles eliminam o ciclo de rebuild para cada alteração de código, mantendo o container sincronizado com seus arquivos.
+> **Resumo:** Volumes são essenciais para desenvolvimento local com Docker. Ao montar uma pasta, lembre-se de proteger o `node_modules` (ou qualquer pasta de dependências instalada durante o build) com um volume anônimo, senão o container não sobe.

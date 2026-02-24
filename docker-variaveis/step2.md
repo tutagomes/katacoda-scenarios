@@ -3,8 +3,11 @@
 Quando uma aplicação precisa de muitas variáveis, passar cada uma com `-e` se torna impraticável. A solução é usar um arquivo `.env` — uma convenção amplamente adotada no ecossistema Docker.
 
 ### Criando o arquivo .env
+```
+touch .env
+```{{exec}}
 
-<pre class="file" data-filename=".env" data-target="replace">
+```env
 APP_ENV=development
 APP_PORT=8080
 APP_NAME=Minha Aplicação
@@ -14,7 +17,7 @@ DB_NAME=meu_banco
 DB_USER=admin
 DB_PASSWORD=senha-de-dev
 LOG_LEVEL=debug
-</pre>
+```{{copy}}
 
 ### Usando com --env-file
 
@@ -37,7 +40,11 @@ O arquivo `.env` frequentemente contém senhas e chaves de API. **Nunca commite 
 1. Adicionar `.env` ao `.gitignore`
 2. Manter um arquivo `.env.example` no repositório com as chaves mas sem valores sensíveis:
 
-<pre class="file" data-filename=".env.example" data-target="replace">
+```
+touch .env.example
+```{{exec}}
+
+```env
 APP_ENV=
 APP_PORT=
 APP_NAME=
@@ -47,6 +54,6 @@ DB_NAME=
 DB_USER=
 DB_PASSWORD=
 LOG_LEVEL=
-</pre>
+```{{copy}}
 
 Assim qualquer pessoa que clonar o projeto sabe quais variáveis precisa configurar, sem ter acesso aos valores reais.

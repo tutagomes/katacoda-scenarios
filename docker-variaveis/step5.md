@@ -6,19 +6,28 @@ Agora vamos juntar tudo e simular um padrão muito comum no dia a dia: a **mesma
 
 Arquivo para desenvolvimento:
 
-<pre class="file" data-filename=".env.dev" data-target="replace">
+```
+touch .env.dev
+```{{exec}}
+
+
+```env
 APP_ENV=development
 PORT=3000
 MENSAGEM=Ambiente de Desenvolvimento - Pode fazer bagunça!
-</pre>
+```{{copy}}
 
 Arquivo para produção:
 
-<pre class="file" data-filename=".env.prod" data-target="replace">
+```
+touch .env.prod
+```{{exec}}
+
+```env
 APP_ENV=production
 PORT=3000
 MENSAGEM=Bem-vindo! Sistema em produção.
-</pre>
+```{{copy}}
 
 ### Subindo os dois ambientes
 

@@ -12,9 +12,9 @@ O comando `env` lista todas as variáveis de ambiente do container. Note as que 
 
 Agora vamos passar uma variável personalizada:
 
-`docker run --rm -e MEU_NOME=Arthur alpine env`{{execute}}
+`docker run --rm -e MEU_NOME=Usuario alpine env`{{execute}}
 
-Veja que `MEU_NOME=Arthur` aparece na lista. Você também pode passar múltiplas variáveis:
+Veja que `MEU_NOME=Usuario` aparece na lista. Você também pode passar múltiplas variáveis:
 
 `docker run --rm -e APP_ENV=producao -e APP_PORT=8080 -e DB_HOST=db.servidor.com alpine env`{{execute}}
 

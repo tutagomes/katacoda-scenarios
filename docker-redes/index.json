@@ -14,16 +14,12 @@
                 "text": "step2.md"
             },
             {
-                "title": "Containers se comunicando",
+                "title": "Isolamento entre redes",
                 "text": "step3.md"
             },
             {
-                "title": "Isolamento entre redes",
-                "text": "step4.md"
-            },
-            {
                 "title": "Inspecionando redes",
-                "text": "step5.md"
+                "text": "step4.md"
             }
         ],
         "intro": {

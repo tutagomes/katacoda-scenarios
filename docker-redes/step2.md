@@ -10,29 +10,35 @@ Verifique que ela foi criada:
 
 `docker network ls`{{execute}}
 
-### Inspecionando a rede recém-criada
+### Um cenário real: aplicação web + cache
 
-`docker network inspect minha-rede`{{execute}}
+Vamos simular algo comum no mundo real — um servidor web que precisa se comunicar com um Redis (cache/banco em memória):
 
-Note a faixa de IPs atribuída automaticamente (campo `"Subnet"`) e que ainda não há containers conectados.
+`docker run -d --name redis --network minha-rede redis:alpine`{{execute}}
 
-### Subindo containers já conectados à rede
+`docker run -d --name web --network minha-rede alpine sleep 3600`{{execute}}
 
-Use a flag `--network` para conectar um container à rede no momento da criação:
+Agora, de dentro do container `web`, acesse o Redis **pelo nome**:
+
+`docker exec web wget -q -O- http://redis:6379 2>&1 || echo "Conexão recebida pelo Redis (porta respondeu)"`{{execute}}
+
+O Docker resolveu automaticamente o nome `redis` para o IP correto. Esse é o DNS interno em ação — sem IPs hardcoded, sem configuração extra.
+
+Na prática, é exatamente assim que sua aplicação acessaria o banco de dados ou o cache:
+
+- Container `app` acessa container `db` em `db:5432`
+- Container `app` acessa container `cache` em `cache:6379`
+- Nenhum IP hardcoded, nenhuma configuração frágil
+
+### Testando com nginx
+
+Vamos adicionar um nginx à mesma rede para ver a resolução de nomes com uma resposta HTTP completa:
 
 `docker run -d --name servidor --network minha-rede nginx`{{execute}}
 
-`docker run -d --name cliente --network minha-rede alpine sleep 3600`{{execute}}
+`docker exec web wget -q -O- http://servidor`{{execute}}
 
-> O `sleep 3600` mantém o container `alpine` vivo por 1 hora sem fazer nada — útil para containers de teste que precisam ficar disponíveis para comandos manuais.
-
-### Testando a resolução de nomes
-
-Agora, dentro do container `cliente`, faça uma requisição HTTP ao `servidor` usando apenas seu nome:
-
-`docker exec cliente wget -q -O- http://servidor`{{execute}}
-
-Funcionou! O Docker resolveu automaticamente o nome `servidor` para o IP do container correto e a requisição chegou ao nginx. Isso é o DNS interno em ação — sem IPs hardcoded, sem configuração extra.
+O container `web` conseguiu acessar o nginx digitando apenas `servidor`.
 
 ### Conectando um container existente a uma rede
 
@@ -40,6 +46,42 @@ Também é possível conectar um container que já está rodando a uma rede:
 
 `docker run -d --name outro-servidor nginx`{{execute}}
 
+Esse container não está em `minha-rede` — vamos conectá-lo:
+
 `docker network connect minha-rede outro-servidor`{{execute}}
 
-`docker exec cliente wget -q -O- http://outro-servidor`{{execute}}
+`docker exec web wget -q -O- http://outro-servidor`{{execute}}
+
+### Aliases: múltiplos nomes para o mesmo container
+
+Você pode dar apelidos a um container dentro de uma rede. Há duas formas:
+
+**No `docker run` com `--network-alias`:**
+
+```bash
+docker run -d --name api-v2 --network minha-rede --network-alias api nginx
+```
+
+`docker run -d --name api-v2 --network minha-rede --network-alias api nginx`{{execute}}
+
+Agora `api-v2` responde tanto por `api-v2` quanto por `api`:
+
+`docker exec web wget -q -O- http://api`{{execute}}
+
+**No `docker network connect` com `--alias`:**
+
+```bash
+docker network connect --alias servidor-web minha-rede outro-servidor
+```
+
+`docker network connect --alias servidor-web minha-rede outro-servidor`{{execute}}
+
+`docker exec web wget -q -O- http://servidor-web`{{execute}}
+
+Aliases são úteis para criar nomes semânticos (`api`, `cache`, `db`) independente do nome real do container.
+
+### Limpando
+
+`docker rm -f redis web servidor outro-servidor api-v2`{{execute}}
+
+`docker network rm minha-rede`{{execute}}

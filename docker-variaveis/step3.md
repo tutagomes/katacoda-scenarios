@@ -6,7 +6,11 @@ Até agora passamos variáveis no `docker run`. Mas também é possível definir
 
 Vamos criar uma aplicação Node.js que usa variáveis de ambiente para se configurar:
 
-<pre class="file" data-filename="server.js" data-target="replace">
+```sh
+touch server.js
+```{{copy}
+
+```js
 'use strict';
 const http = require('http');
 
@@ -26,11 +30,15 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`Rodando em modo ${APP_ENV} na porta ${PORT}`);
 });
-</pre>
+```{{copy}}
 
 ### Definindo valores padrão com ENV
 
-<pre class="file" data-filename="Dockerfile" data-target="replace">
+```sh
+touch Dockerfile
+```{{copy}
+
+```Dockerfile
 FROM node:alpine
 
 WORKDIR /usr/src/app
@@ -44,7 +52,7 @@ ENV MENSAGEM="Olá do Dockerfile!"
 EXPOSE $PORT
 
 CMD ["node", "server.js"]
-</pre>
+```{{copy}}
 
 Note que usamos `EXPOSE $PORT` — o Docker substitui o valor da variável no momento do build.
 

@@ -13,7 +13,7 @@ Além do `ENV`, o Dockerfile tem outra instrução para variáveis: o `ARG`. Ele
 
 Um uso clássico de `ARG` é controlar a versão da imagem base sem alterar o Dockerfile:
 
-<pre class="file" data-filename="Dockerfile" data-target="replace">
+```Dockerfile
 FROM node:alpine
 
 # ARG define a variável só para o momento do build
@@ -32,7 +32,7 @@ COPY server.js .
 
 EXPOSE $PORT
 CMD ["node", "server.js"]
-</pre>
+```{{copy}}
 
 ### Passando ARGs no build
 

@@ -1,55 +1,77 @@
-## Isolamento entre redes
+## Inspecionando redes
 
-Uma das propriedades mais importantes das redes Docker é o **isolamento**: containers em redes diferentes não conseguem se comunicar entre si, mesmo que estejam no mesmo host. Isso é fundamental para segurança em ambientes com múltiplos projetos ou camadas de serviço.
+Saber diagnosticar problemas de rede é tão importante quanto criar a rede certa. Vamos montar um mini cenário e usar as ferramentas de inspeção do Docker para entendê-lo.
 
-### Criando duas redes separadas
+### Montando o cenário
 
-`docker network create rede-front`{{execute}}
+`docker network create rede-app`{{execute}}
 
-`docker network create rede-back`{{execute}}
+`docker run -d --name api --network rede-app nginx`{{execute}}
 
-### Subindo containers em redes diferentes
+`docker run -d --name db --network rede-app redis:alpine`{{execute}}
 
-`docker run -d --name front --network rede-front nginx`{{execute}}
+`docker run -d --name monitor alpine sleep 3600`{{execute}}
 
-`docker run -d --name back --network rede-back nginx`{{execute}}
+Note que `monitor` não foi conectado à `rede-app` — isso é proposital.
 
-### Confirmando o isolamento
+### Listando todas as redes
 
-O container `front` na `rede-front` **não deve conseguir** alcançar o container `back` na `rede-back`:
+`docker network ls`{{execute}}
 
-`docker run --rm --network rede-front alpine wget -q -T 3 -O- http://back`{{execute}}
+### Inspecionando uma rede em detalhe
 
-Como esperado: falha com timeout. O container `back` simplesmente não existe para quem está na `rede-front` — o DNS interno não resolve nomes de outras redes.
+O `docker network inspect` mostra tudo sobre uma rede — configuração de IP, containers conectados, endereços atribuídos:
 
-### Criando uma ponte entre as redes
+`docker network inspect rede-app`{{execute}}
 
-Em alguns casos, um container precisa fazer parte de duas redes — por exemplo, um servidor de API que precisa falar tanto com o frontend quanto com o banco de dados:
+Procure a seção `"Containers"` — ela lista `api` e `db` com seus IPs internos. O `monitor` não aparece aqui porque está na rede `bridge` padrão.
 
-`docker run -d --name api-gateway --network rede-front nginx`{{execute}}
+### Verificando a qual rede um container pertence
 
-`docker network connect rede-back api-gateway`{{execute}}
+`docker inspect api --format='{{json .NetworkSettings.Networks}}' | python3 -m json.tool`{{execute}}
 
-Agora o `api-gateway` tem um pé em cada rede:
+Você verá que `api` está conectado à `rede-app` com seu IP.
 
-`docker network inspect rede-front`{{execute}}
+### Diagnosticando: "por que meu container não alcança o outro?"
 
-`docker network inspect rede-back`{{execute}}
+Vamos simular o diagnóstico mais comum. O `monitor` tenta acessar a `api`:
 
-### Um padrão comum de arquitetura
+`docker exec monitor wget -q -T 3 -O- http://api 2>&1 || echo "Falhou: monitor não alcança api"`{{execute}}
 
-Esse isolamento permite um padrão seguro muito usado:
+**Passo 1 — verificar em qual rede cada container está:**
 
-```
-[browser]
-    ↓
-[rede-front]
-    ↓
-[container: frontend] ←→ [container: api-gateway]
-                                    ↓
-                            [rede-back]
-                                    ↓
-                          [container: banco-de-dados]
-```
+`docker inspect monitor --format='Redes: {{range $k, $v := .NetworkSettings.Networks}}{{$k}} {{end}}'`{{execute}}
 
-O banco de dados fica em uma rede privada inacessível diretamente do frontend — apenas a API pode acessá-lo.
+`docker inspect api --format='Redes: {{range $k, $v := .NetworkSettings.Networks}}{{$k}} {{end}}'`{{execute}}
+
+O `monitor` está na `bridge`, a `api` está na `rede-app` — redes diferentes, não se enxergam.
+
+**Passo 2 — resolver conectando à mesma rede:**
+
+`docker network connect rede-app monitor`{{execute}}
+
+`docker exec monitor wget -q -O- http://api > /dev/null && echo "Agora funciona!"`{{execute}}
+
+### Desconectando um container de uma rede
+
+`docker network disconnect rede-app monitor`{{execute}}
+
+`docker inspect monitor --format='Redes: {{range $k, $v := .NetworkSettings.Networks}}{{$k}} {{end}}'`{{execute}}
+
+O `monitor` voltou a ter acesso apenas à `bridge` padrão.
+
+### Removendo redes
+
+Para remover uma rede, todos os containers devem estar desconectados primeiro:
+
+`docker rm -f api db monitor`{{execute}}
+
+`docker network rm rede-app`{{execute}}
+
+Para remover todas as redes que não têm nenhum container ativo:
+
+`docker network prune -f`{{execute}}
+
+`docker network ls`{{execute}}
+
+Sobram apenas as três redes padrão — `bridge`, `host` e `none`.

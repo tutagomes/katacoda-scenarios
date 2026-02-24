@@ -17,23 +17,33 @@ docker network inspect <nome>              # Exibe detalhes da rede
 **Conectando containers:**
 
 ```bash
-docker run --network <rede> ...            # Conecta na criação
-docker network connect <rede> <container>  # Conecta um container existente
+docker run --network <rede> ...                        # Conecta na criação
+docker run --network <rede> --network-alias <apelido>  # Com alias na criação
+docker network connect <rede> <container>              # Conecta um container existente
 docker network connect --alias <apelido> <rede> <container>  # Com alias
-docker network disconnect <rede> <container>  # Desconecta
+docker network disconnect <rede> <container>           # Desconecta
+```
+
+**Redes especiais:**
+
+```bash
+docker run --network host ...              # Compartilha a rede do host (sem -p)
+docker run --network none ...              # Container sem acesso à rede
 ```
 
 **Diagnóstico:**
 
 ```bash
-docker inspect <container> | grep -A 20 '"Networks"'   # Redes do container
-docker exec <container> ping <outro-container>          # Testa conectividade
+docker inspect <container> --format='{{json .NetworkSettings.Networks}}'  # Redes do container
+docker exec <container> wget -q -T 3 -O- http://<outro>                  # Testa conectividade
 ```
 
 ### Conceitos-chave
 
 - Redes **customizadas** têm DNS interno — containers se encontram pelo nome
 - A rede **bridge padrão** não tem DNS — só comunica por IP
+- A rede **host** elimina o isolamento de rede — sem mapeamento de portas
+- A rede **none** isola o container completamente — sem rede nenhuma
 - Containers em **redes diferentes** são isolados entre si por padrão
 - Um container pode pertencer a **múltiplas redes** simultaneamente
 

@@ -28,12 +28,34 @@ Role o output e veja a seção `"Containers"` — os dois containers aparecem l�
 
 Containers na `bridge` padrão **não se enxergam pelo nome** — apenas por IP. E IPs mudam toda vez que um container é recriado. Teste isso:
 
-`docker exec container-a ping -c 2 container-b`{{execute}}
+`docker exec container-a wget -q -O- http://container-b 2>&1 || echo "Falhou: nome não resolvido"`{{execute}}
 
-Você vai receber um erro: o nome `container-b` não é resolvido. Seria necessário usar o IP diretamente, o que é frágil e trabalhoso.
+O nome `container-b` não é resolvido. Seria necessário descobrir o IP manualmente e usá-lo diretamente — o que é frágil e trabalhoso.
 
 Esse é exatamente o problema que as redes customizadas resolvem.
 
-Vamos limpar antes de continuar:
+### A rede host
+
+Com `--network host`, o container compartilha diretamente a rede da máquina — sem isolamento. Ele não precisa de `-p` para expor portas:
+
+`docker run -d --name nginx-host --network host nginx`{{execute}}
+
+A porta 80 do nginx já está acessível diretamente na máquina:
+
+`curl -s localhost:80 | head -5`{{execute}}
+
+Isso é mais rápido (sem tradução de portas), mas perde o isolamento — dois containers não podem usar a mesma porta. Em produção, o uso é raro.
+
+`docker rm -f nginx-host`{{execute}}
+
+### A rede none
+
+Com `--network none`, o container fica completamente isolado — sem rede nenhuma:
+
+`docker run --rm --network none alpine wget -q -T 2 -O- http://google.com 2>&1 || echo "Sem rede: como esperado"`{{execute}}
+
+Nenhuma conexão de entrada ou saída. Útil para containers que processam apenas arquivos locais e não devem ter acesso à rede por segurança.
+
+### Limpando
 
 `docker rm -f container-a container-b`{{execute}}

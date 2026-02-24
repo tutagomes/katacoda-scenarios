@@ -1,41 +1,65 @@
-## Containers se comunicando
+## Isolamento entre redes
 
-Agora vamos simular uma situação real: uma aplicação web que precisa consultar outro serviço. Vamos usar dois containers nginx — um representando uma API e outro um cliente que faz requisições a ela.
+Uma das propriedades mais importantes das redes Docker é o **isolamento**: containers em redes diferentes não conseguem se comunicar entre si, mesmo que estejam no mesmo host. Isso é fundamental para segurança em ambientes com múltiplos projetos ou camadas de serviço.
 
-### Criando a rede do projeto
+### Criando duas redes separadas
 
-`docker network create rede-projeto`{{execute}}
+`docker network create rede-front`{{execute}}
 
-### Subindo o container "API"
+`docker network create rede-back`{{execute}}
 
-`docker run -d --name api --network rede-projeto nginx`{{execute}}
+### Subindo containers em redes diferentes
 
-### Verificando que a API está no ar
+`docker run -d --name front --network rede-front nginx`{{execute}}
 
-`docker exec api wget -q -O- http://localhost`{{execute}}
+`docker run -d --name back --network rede-back nginx`{{execute}}
 
-### Subindo o container "app" e acessando a API pelo nome
+### Confirmando o isolamento
 
-O Alpine já vem com `wget` — sem precisar instalar nada. Vamos usá-lo para acessar a API usando apenas o **nome do container**:
+O container `front` na `rede-front` **não deve conseguir** alcançar o container `back` na `rede-back`:
 
-`docker run -d --name app --network rede-projeto alpine sleep 3600`{{execute}}
+`docker run --rm --network rede-front alpine wget -q -T 3 -O- http://back 2>&1 || echo "Falhou: redes diferentes não se enxergam"`{{execute}}
 
-`docker exec app wget -q -O- http://api`{{execute}}
+Como esperado: o DNS interno não resolve nomes de containers que estão em outra rede. O container `back` simplesmente não existe para quem está na `rede-front`.
 
-O container `app` acessou o nginx digitando apenas `api` — o Docker resolveu o nome para o IP correto. Esse é exatamente o padrão usado no mundo real:
+### Criando uma ponte entre as redes
 
-- Container `app` acessa container `db` em `db:5432`
-- Container `app` acessa container `cache` em `cache:6379`
-- Nenhum IP hardcoded, nenhuma configuração frágil
+Em alguns casos, um container precisa fazer parte de duas redes — por exemplo, um servidor de API que precisa falar tanto com o frontend quanto com o banco de dados:
 
-### Múltiplos nomes (aliases)
+`docker run -d --name api-gateway --network rede-front nginx`{{execute}}
 
-Você pode conectar um container a uma rede com um apelido adicional, permitindo que ele seja acessado por mais de um nome:
+`docker network connect rede-back api-gateway`{{execute}}
 
-`docker run -d --name api-v2 nginx`{{execute}}
+Agora o `api-gateway` tem um pé em cada rede. Vamos confirmar:
 
-`docker network connect --alias servidor-web rede-projeto api-v2`{{execute}}
+`docker exec api-gateway wget -q -O- http://front > /dev/null && echo "Alcançou front: OK"`{{execute}}
 
-`docker exec app wget -q -O- http://servidor-web`{{execute}}
+`docker exec api-gateway wget -q -O- http://back > /dev/null && echo "Alcançou back: OK"`{{execute}}
 
-O container `api-v2` agora responde por `api-v2` e também por `servidor-web` dentro da `rede-projeto`. Isso é útil para criar aliases de versão ou nomes semânticos para serviços.
+Enquanto isso, `front` continua sem alcançar `back` diretamente:
+
+`docker run --rm --network rede-front alpine wget -q -T 3 -O- http://back 2>&1 || echo "front → back: ainda bloqueado"`{{execute}}
+
+### Um padrão comum de arquitetura
+
+Esse isolamento permite um padrão seguro muito usado:
+
+```
+[browser]
+    ↓
+[rede-front]
+    ↓
+[container: frontend] ←→ [container: api-gateway]
+                                    ↓
+                            [rede-back]
+                                    ↓
+                          [container: banco-de-dados]
+```
+
+O banco de dados fica em uma rede privada inacessível diretamente do frontend — apenas a API pode acessá-lo.
+
+### Limpando
+
+`docker rm -f front back api-gateway`{{execute}}
+
+`docker network rm rede-front rede-back`{{execute}}
