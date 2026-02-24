@@ -1,5 +1,5 @@
 {
-    "title": "03 - Docker Compose: Banco de Dados e Persistência",
+    "title": "[Compose 03] - Banco de Dados e Persistência",
     "description": "Conecte uma API .NET ao SQL Server com volumes para persistência de dados",
     "difficulty": "intermediate",
     "time": "25 minutes",

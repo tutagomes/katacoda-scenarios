@@ -1,5 +1,5 @@
 {
-    "title": "05 - Docker: Otimizando Imagens",
+    "title": "[Docker 05] - Otimizando Imagens",
     "description": "Aprenda a criar imagens menores, mais rápidas e seguras com boas práticas e multi-stage builds",
     "difficulty": "intermediate",
     "time": "25 minutes",
