@@ -1,0 +1,42 @@
+{
+    "title": "Docker: Executando Imagens",
+    "description": "Aprenda a buscar, executar e gerenciar containers Docker do zero",
+    "difficulty": "easy",
+    "time": "25 minutes",
+    "details": {
+        "steps": [
+            {
+                "title": "Docker Hub e Imagens",
+                "text": "step1.md"
+            },
+            {
+                "title": "Rodando seu primeiro container",
+                "text": "step2.md"
+            },
+            {
+                "title": "Mapeamento de Portas",
+                "text": "step3.md"
+            },
+            {
+                "title": "Ciclo de Vida do Container",
+                "text": "step4.md"
+            },
+            {
+                "title": "Explorando o Container",
+                "text": "step5.md"
+            }
+        ],
+        "intro": {
+            "text": "intro.md"
+        },
+        "finish": {
+            "text": "finish.md"
+        }
+    },
+    "environment": {
+        "uilayout": "terminal"
+    },
+    "backend": {
+        "imageid": "ubuntu"
+    }
+}

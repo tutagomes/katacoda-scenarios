@@ -1,0 +1,48 @@
+{
+    "title": "Docker Compose: Introdução",
+    "description": "Aprenda a definir e executar aplicações .NET com Docker Compose",
+    "difficulty": "easy",
+    "time": "20 minutes",
+    "files": [
+        "Program.cs",
+        "MinhaApi.csproj",
+        "Dockerfile",
+        "docker-compose.yml"
+    ],
+    "details": {
+        "steps": [
+            {
+                "title": "O que é Docker Compose",
+                "text": "step1.md"
+            },
+            {
+                "title": "Criando a API .NET",
+                "text": "step2.md"
+            },
+            {
+                "title": "Escrevendo o docker-compose.yml",
+                "text": "step3.md"
+            },
+            {
+                "title": "Comandos essenciais",
+                "text": "step4.md"
+            },
+            {
+                "title": "Variáveis e rebuild",
+                "text": "step5.md"
+            }
+        ],
+        "intro": {
+            "text": "intro.md"
+        },
+        "finish": {
+            "text": "finish.md"
+        }
+    },
+    "environment": {
+        "uilayout": "editor-terminal"
+    },
+    "backend": {
+        "imageid": "ubuntu"
+    }
+}

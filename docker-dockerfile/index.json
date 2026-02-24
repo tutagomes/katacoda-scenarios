@@ -1,0 +1,51 @@
+{
+    "title": "Docker: Criando sua primeira imagem",
+    "description": "Aprenda a escrever um Dockerfile e construir sua própria imagem Docker",
+    "difficulty": "easy",
+    "time": "25 minutes",
+    "files": [
+        "package.json",
+        "server.js",
+        "Dockerfile"
+    ],
+    "details": {
+        "steps": [
+            {
+                "title": "Anatomia do Dockerfile",
+                "text": "step1.md"
+            },
+            {
+                "title": "Criando a aplicação",
+                "text": "step2.md"
+            },
+            {
+                "title": "Escrevendo o Dockerfile",
+                "text": "step3.md"
+            },
+            {
+                "title": "Fazendo o build",
+                "text": "step4.md"
+            },
+            {
+                "title": "Rodando sua imagem",
+                "text": "step5.md"
+            },
+            {
+                "title": "Montando um volume",
+                "text": "step6.md"
+            }
+        ],
+        "intro": {
+            "text": "intro.md"
+        },
+        "finish": {
+            "text": "finish.md"
+        }
+    },
+    "environment": {
+        "uilayout": "editor-terminal"
+    },
+    "backend": {
+        "imageid": "ubuntu"
+    }
+}

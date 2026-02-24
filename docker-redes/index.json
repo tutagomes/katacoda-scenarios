@@ -1,0 +1,42 @@
+{
+    "title": "Docker: Redes",
+    "description": "Aprenda a criar redes customizadas e fazer containers se comunicarem entre si",
+    "difficulty": "easy",
+    "time": "25 minutes",
+    "details": {
+        "steps": [
+            {
+                "title": "Redes padrão do Docker",
+                "text": "step1.md"
+            },
+            {
+                "title": "Criando uma rede customizada",
+                "text": "step2.md"
+            },
+            {
+                "title": "Containers se comunicando",
+                "text": "step3.md"
+            },
+            {
+                "title": "Isolamento entre redes",
+                "text": "step4.md"
+            },
+            {
+                "title": "Inspecionando redes",
+                "text": "step5.md"
+            }
+        ],
+        "intro": {
+            "text": "intro.md"
+        },
+        "finish": {
+            "text": "finish.md"
+        }
+    },
+    "environment": {
+        "uilayout": "terminal"
+    },
+    "backend": {
+        "imageid": "ubuntu"
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "title": "Docker: Otimizando Imagens",
+    "description": "Aprenda a criar imagens menores, mais rápidas e seguras com boas práticas e multi-stage builds",
+    "difficulty": "intermediate",
+    "time": "25 minutes",
+    "files": [
+        "Dockerfile",
+        "Dockerfile.otimizado",
+        ".dockerignore"
+    ],
+    "details": {
+        "steps": [
+            {
+                "title": "Por que o tamanho importa",
+                "text": "step1.md"
+            },
+            {
+                "title": ".dockerignore",
+                "text": "step2.md"
+            },
+            {
+                "title": "Boas práticas no Dockerfile",
+                "text": "step3.md"
+            },
+            {
+                "title": "Multi-stage builds",
+                "text": "step4.md"
+            },
+            {
+                "title": "Comparando os resultados",
+                "text": "step5.md"
+            }
+        ],
+        "intro": {
+            "text": "intro.md"
+        },
+        "finish": {
+            "text": "finish.md"
+        }
+    },
+    "environment": {
+        "uilayout": "editor-terminal"
+    },
+    "backend": {
+        "imageid": "ubuntu"
+    }
+}

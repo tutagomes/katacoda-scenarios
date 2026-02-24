@@ -1,0 +1,47 @@
+{
+    "title": "Docker: Variáveis de Ambiente",
+    "description": "Aprenda a configurar containers com variáveis de ambiente para diferentes contextos",
+    "difficulty": "easy",
+    "time": "20 minutes",
+    "files": [
+        "server.js",
+        "Dockerfile",
+        ".env"
+    ],
+    "details": {
+        "steps": [
+            {
+                "title": "Passando variáveis com -e",
+                "text": "step1.md"
+            },
+            {
+                "title": "Usando um arquivo .env",
+                "text": "step2.md"
+            },
+            {
+                "title": "ENV no Dockerfile",
+                "text": "step3.md"
+            },
+            {
+                "title": "ARG vs ENV",
+                "text": "step4.md"
+            },
+            {
+                "title": "Configurando ambientes diferentes",
+                "text": "step5.md"
+            }
+        ],
+        "intro": {
+            "text": "intro.md"
+        },
+        "finish": {
+            "text": "finish.md"
+        }
+    },
+    "environment": {
+        "uilayout": "editor-terminal"
+    },
+    "backend": {
+        "imageid": "ubuntu"
+    }
+}
