@@ -1,5 +1,5 @@
 {
-    "title": "Docker: Criando sua primeira imagem",
+    "title": "02 - Docker: Criando sua primeira imagem",
     "description": "Aprenda a escrever um Dockerfile e construir sua própria imagem Docker",
     "difficulty": "easy",
     "time": "25 minutes",

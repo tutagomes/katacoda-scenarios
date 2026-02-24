@@ -6,9 +6,9 @@ O Docker resolve esse problema empacotando a aplicação junto com **tudo que el
 
 ### Imagem vs Container
 
-Pense em uma **imagem** como a receita de um bolo: ela descreve todos os ingredientes e o modo de preparo, mas ainda não é o bolo em si.
+Pense em uma **imagem** como um **pacote instalador**: um arquivo imutável que contém o sistema operacional base, as dependências e o software já configurado — tudo pronto para rodar. Uma imagem de nginx, por exemplo, pode ter dezenas de megabytes ou até gigabytes, dependendo do que inclui.
 
-Um **container** é o bolo pronto — uma instância em execução daquela imagem. E assim como você pode assar vários bolos com a mesma receita, pode criar quantos containers quiser a partir da mesma imagem.
+Um **container** é o processo em execução gerado a partir desse pacote. Você pode criar vários containers a partir da mesma imagem — cada um isolado, com seu próprio sistema de arquivos e sua própria rede —, assim como pode abrir vários processos a partir do mesmo executável.
 
 ### O que você vai aprender neste cenário
 

@@ -28,18 +28,18 @@ Use a flag `--network` para conectar um container à rede no momento da criaçã
 
 ### Testando a resolução de nomes
 
-Agora, dentro do container `cliente`, tente alcançar o `servidor` pelo nome:
+Agora, dentro do container `cliente`, faça uma requisição HTTP ao `servidor` usando apenas seu nome:
 
-`docker exec cliente ping -c 3 servidor`{{execute}}
+`docker exec cliente wget -q -O- http://servidor`{{execute}}
 
-Funcionou! O Docker resolveu automaticamente o nome `servidor` para o IP do container correto. Isso é o DNS interno em ação.
+Funcionou! O Docker resolveu automaticamente o nome `servidor` para o IP do container correto e a requisição chegou ao nginx. Isso é o DNS interno em ação — sem IPs hardcoded, sem configuração extra.
 
 ### Conectando um container existente a uma rede
 
-Também é possível conectar um container que já está rodando:
+Também é possível conectar um container que já está rodando a uma rede:
 
 `docker run -d --name outro-servidor nginx`{{execute}}
 
 `docker network connect minha-rede outro-servidor`{{execute}}
 
-`docker exec cliente ping -c 3 outro-servidor`{{execute}}
+`docker exec cliente wget -q -O- http://outro-servidor`{{execute}}

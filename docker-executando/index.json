@@ -1,8 +1,8 @@
 {
-    "title": "Docker: Executando Imagens",
+    "title": "01 - Docker: Executando Imagens",
     "description": "Aprenda a buscar, executar e gerenciar containers Docker do zero",
     "difficulty": "easy",
-    "time": "25 minutes",
+    "time": "30 minutes",
     "details": {
         "steps": [
             {
@@ -22,8 +22,16 @@
                 "text": "step4.md"
             },
             {
-                "title": "Explorando o Container",
+                "title": "Explorando com docker exec",
                 "text": "step5.md"
+            },
+            {
+                "title": "Copiando arquivos com docker cp",
+                "text": "step6.md"
+            },
+            {
+                "title": "Monitorando e limpando o ambiente",
+                "text": "step7.md"
             }
         ],
         "intro": {

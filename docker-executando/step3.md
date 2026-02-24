@@ -5,10 +5,10 @@ Por padrão, um container roda de forma **completamente isolada** — ele tem su
 Isso é feito com a flag `-p`:
 
 ```
--p PORTA_DA_SUA_MAQUINA:PORTA_DO_CONTAINER
+-p PORTA_DA_MAQUINA_HOST:PORTA_DO_CONTAINER
 ```
 
-Pense assim: é como configurar um interfone que redireciona a campainha da porta `80` do container para a porta `8080` da sua máquina. Quem bater na `8080` de fora vai ser atendido pela `80` dentro do container.
+O Docker cria uma regra de redirecionamento de rede: toda requisição que chegar na porta `8080` da máquina host é encaminhada para a porta `80` dentro do container.
 
 ### Rodando com porta exposta
 
@@ -18,7 +18,7 @@ Verifique os containers:
 
 `docker ps`{{execute}}
 
-Observe que agora aparece `0.0.0.0:8080->80/tcp` na coluna PORTS, confirmando o mapeamento.
+Observe que agora aparece `0.0.0.0:8080->80/tcp` na coluna PORTS, confirmando o mapeamento. O prefixo `0.0.0.0` significa que a porta está vinculada a todas as interfaces de rede da máquina host — acessível tanto localmente quanto de outros computadores na mesma rede.
 
 Vamos testar o acesso:
 
@@ -38,4 +38,4 @@ Podemos rodar vários containers da mesma imagem simultaneamente, desde que cada
 
 [Abrir na porta 8081]({{TRAFFIC_HOST1_8081}})
 
-> Tentar subir dois containers na mesma porta da máquina causaria um erro — é como tentar ligar dois telefones no mesmo número ao mesmo tempo.
+> Tentar subir dois containers na mesma porta da máquina causaria um conflito — a porta `8081` já está ocupada e o sistema operacional não permite duas ligações à mesma porta simultaneamente.

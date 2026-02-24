@@ -40,8 +40,14 @@ Para remover uma rede, todos os containers devem estar desconectados dela primei
 
 > O Docker não permite remover redes que ainda têm containers conectados — isso é uma proteção para evitar desconexões acidentais.
 
-### Removendo redes não utilizadas de uma vez
+### Limpando todos os recursos do cenário
 
-`docker network prune`{{execute}}
+Vamos remover todos os containers e redes criados ao longo deste cenário:
 
-O `prune` remove todas as redes que não têm nenhum container ativo — útil para limpar o ambiente de desenvolvimento.
+`docker rm -f servidor cliente outro-servidor api app api-v2 container-a container-b 2>/dev/null; echo "Containers removidos"`{{execute}}
+
+`docker network prune -f`{{execute}}
+
+`docker network ls`{{execute}}
+
+O `prune` remove todas as redes que não têm nenhum container ativo — deixando apenas as três redes padrão do Docker.

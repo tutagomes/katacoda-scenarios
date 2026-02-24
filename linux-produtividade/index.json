@@ -1,34 +1,28 @@
 {
-    "title": "03 - Docker Compose: Banco de Dados e Persistência",
-    "description": "Conecte uma API .NET ao SQL Server com volumes para persistência de dados",
+    "title": "03 - Linux: Produtividade",
+    "description": "Variáveis de ambiente, shell scripting, pacotes, rede e agendamento de tarefas",
     "difficulty": "intermediate",
     "time": "25 minutes",
-    "files": [
-        "Program.cs",
-        "MinhaApi.csproj",
-        "Dockerfile",
-        "docker-compose.yml"
-    ],
     "details": {
         "steps": [
             {
-                "title": "O problema dos dados que somem",
+                "title": "Variáveis de ambiente",
                 "text": "step1.md"
             },
             {
-                "title": "A API com SQL Server",
+                "title": "Shell scripting básico",
                 "text": "step2.md"
             },
             {
-                "title": "Volumes nomeados no Compose",
+                "title": "Gerenciamento de pacotes",
                 "text": "step3.md"
             },
             {
-                "title": "Aguardando o banco ficar pronto",
+                "title": "Rede e conectividade",
                 "text": "step4.md"
             },
             {
-                "title": "Provando a persistência",
+                "title": "Agendamento com cron",
                 "text": "step5.md"
             }
         ],
@@ -40,7 +34,7 @@
         }
     },
     "environment": {
-        "uilayout": "editor-terminal"
+        "uilayout": "terminal"
     },
     "backend": {
         "imageid": "ubuntu"

@@ -16,9 +16,9 @@ Você verá as redes:
 
 Quando você roda um container sem especificar rede, ele vai para a `bridge` automaticamente:
 
-`docker run -d --name container-a nginx`{{execute}}
+`docker run -d --name container-a alpine sleep 3600`{{execute}}
 
-`docker run -d --name container-b nginx`{{execute}}
+`docker run -d --name container-b alpine sleep 3600`{{execute}}
 
 `docker network inspect bridge`{{execute}}
 
@@ -28,9 +28,9 @@ Role o output e veja a seção `"Containers"` — os dois containers aparecem l�
 
 Containers na `bridge` padrão **não se enxergam pelo nome** — apenas por IP. E IPs mudam toda vez que um container é recriado. Teste isso:
 
-`docker exec container-a ping container-b`{{execute}}
+`docker exec container-a ping -c 2 container-b`{{execute}}
 
-Você vai receber um erro: o nome `container-b` não é resolvido. Seria necessário usar o IP, o que é frágil e trabalhoso.
+Você vai receber um erro: o nome `container-b` não é resolvido. Seria necessário usar o IP diretamente, o que é frágil e trabalhoso.
 
 Esse é exatamente o problema que as redes customizadas resolvem.
 

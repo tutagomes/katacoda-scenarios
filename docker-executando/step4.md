@@ -52,6 +52,8 @@ Teste parando e reiniciando o container para ver a política em ação:
 
 `docker start nginx-sempre`{{execute}}
 
+`docker ps -a`{{execute}}
+
 `docker rm -f nginx-sempre`{{execute}}
 
 ### Removendo containers
@@ -73,8 +75,12 @@ Você pode parar e remover múltiplos containers de uma só vez:
 
 ### Removendo imagens
 
-Para remover uma imagem baixada e liberar espaço em disco:
+No passo anterior baixamos a versão `nginx:1.25` para ver como tags funcionam. Como não vamos usá-la mais, podemos removê-la para liberar espaço:
 
-`docker rmi nginx`{{execute}}
+`docker rmi nginx:1.25`{{execute}}
+
+`docker images`{{execute}}
+
+A imagem `nginx:latest` permanece — ela ainda será usada nos próximos passos.
 
 > O Docker não deixa remover uma imagem enquanto existir algum container que a utilizou — mesmo que esteja parado. Remova os containers primeiro.

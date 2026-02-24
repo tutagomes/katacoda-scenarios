@@ -12,19 +12,17 @@ Agora vamos simular uma situação real: uma aplicação web que precisa consult
 
 ### Verificando que a API está no ar
 
-`docker exec api curl -s localhost`{{execute}}
+`docker exec api wget -q -O- http://localhost`{{execute}}
 
-### Subindo o container "cliente" e acessando a API pelo nome
+### Subindo o container "app" e acessando a API pelo nome
 
-Agora vamos subir um container com `curl` disponível e acessar a API usando apenas o **nome do container**:
+O Alpine já vem com `wget` — sem precisar instalar nada. Vamos usá-lo para acessar a API usando apenas o **nome do container**:
 
-`docker run -d --name cliente --network rede-projeto alpine sleep 3600`{{execute}}
+`docker run -d --name app --network rede-projeto alpine sleep 3600`{{execute}}
 
-`docker exec cliente apk add --no-cache curl`{{execute}}
+`docker exec app wget -q -O- http://api`{{execute}}
 
-`docker exec cliente curl -s http://api`{{execute}}
-
-O cliente acessou o servidor nginx digitando apenas `api` — o Docker resolveu o nome para o IP correto. Esse é exatamente o padrão usado no mundo real:
+O container `app` acessou o nginx digitando apenas `api` — o Docker resolveu o nome para o IP correto. Esse é exatamente o padrão usado no mundo real:
 
 - Container `app` acessa container `db` em `db:5432`
 - Container `app` acessa container `cache` em `cache:6379`
@@ -32,10 +30,12 @@ O cliente acessou o servidor nginx digitando apenas `api` — o Docker resolveu 
 
 ### Múltiplos nomes (aliases)
 
-Você pode dar um apelido a um container dentro de uma rede específica:
+Você pode conectar um container a uma rede com um apelido adicional, permitindo que ele seja acessado por mais de um nome:
 
-`docker network connect --alias servidor-web rede-projeto api`{{execute}}
+`docker run -d --name api-v2 nginx`{{execute}}
 
-`docker exec cliente curl -s http://servidor-web`{{execute}}
+`docker network connect --alias servidor-web rede-projeto api-v2`{{execute}}
 
-O mesmo container agora responde tanto por `api` quanto por `servidor-web` dentro dessa rede.
+`docker exec app wget -q -O- http://servidor-web`{{execute}}
+
+O container `api-v2` agora responde por `api-v2` e também por `servidor-web` dentro da `rede-projeto`. Isso é útil para criar aliases de versão ou nomes semânticos para serviços.

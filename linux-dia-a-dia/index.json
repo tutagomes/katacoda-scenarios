@@ -1,33 +1,28 @@
 {
-    "title": "03 - Docker: Variáveis de Ambiente",
-    "description": "Aprenda a configurar containers com variáveis de ambiente para diferentes contextos",
+    "title": "02 - Linux: Uso do dia a dia",
+    "description": "Busca, permissões, processos e pipes — as ferramentas que você usará todo dia",
     "difficulty": "easy",
-    "time": "20 minutes",
-    "files": [
-        "server.js",
-        "Dockerfile",
-        ".env"
-    ],
+    "time": "25 minutes",
     "details": {
         "steps": [
             {
-                "title": "Passando variáveis com -e",
+                "title": "Buscando arquivos com find",
                 "text": "step1.md"
             },
             {
-                "title": "Usando um arquivo .env",
+                "title": "Buscando conteúdo com grep",
                 "text": "step2.md"
             },
             {
-                "title": "ENV no Dockerfile",
+                "title": "Permissões de arquivos",
                 "text": "step3.md"
             },
             {
-                "title": "ARG vs ENV",
+                "title": "Gerenciando processos",
                 "text": "step4.md"
             },
             {
-                "title": "Configurando ambientes diferentes",
+                "title": "Redirecionamento e pipes",
                 "text": "step5.md"
             }
         ],
@@ -39,7 +34,7 @@
         }
     },
     "environment": {
-        "uilayout": "editor-terminal"
+        "uilayout": "terminal"
     },
     "backend": {
         "imageid": "ubuntu"

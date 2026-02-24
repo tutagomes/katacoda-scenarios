@@ -13,12 +13,15 @@ No resultado, preste atenção nas colunas:
 | Coluna | Significado |
 |---|---|
 | **NAME** | Nome da imagem |
+| **DESCRIPTION** | Descrição resumida do que a imagem faz |
 | **STARS** | Popularidade — quanto maior, mais confiável |
 | **OFFICIAL** | `[OK]` indica imagem mantida oficialmente pelo projeto |
 
 > Sempre prefira imagens marcadas como **OFFICIAL** quando existirem. Elas são revisadas e atualizadas regularmente pela equipe responsável.
 
 ### Baixando uma imagem
+
+O **Nginx** é um servidor web e proxy reverso de alta performance, amplamente usado para servir páginas web, arquivos estáticos e APIs. É uma das imagens mais populares do Docker Hub — e um ótimo ponto de partida para aprender Docker.
 
 Para baixar a imagem oficial do nginx:
 
@@ -37,6 +40,13 @@ As colunas informam:
 | **REPOSITORY** | Nome da imagem |
 | **TAG** | Versão da imagem (`latest` = mais recente) |
 | **IMAGE ID** | Identificador único |
+| **CREATED** | Quando a imagem foi publicada |
 | **SIZE** | Espaço ocupado no disco |
 
-A tag `latest` é aplicada automaticamente quando nenhuma versão é especificada. Para baixar uma versão específica, use `docker pull nginx:1.25`, por exemplo.
+A tag `latest` é aplicada automaticamente quando nenhuma versão é especificada. Para baixar uma versão específica:
+
+`docker pull nginx:1.25`{{execute}}
+
+`docker images`{{execute}}
+
+Perceba que agora você tem duas entradas para `nginx` — a `latest` e a `1.25`. Tags diferentes da mesma imagem base.

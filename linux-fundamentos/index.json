@@ -1,33 +1,28 @@
 {
-    "title": "03 - Docker: Variáveis de Ambiente",
-    "description": "Aprenda a configurar containers com variáveis de ambiente para diferentes contextos",
+    "title": "01 - Linux: Fundamentos",
+    "description": "Primeiros passos no terminal Linux — navegação, arquivos e edição de texto",
     "difficulty": "easy",
-    "time": "20 minutes",
-    "files": [
-        "server.js",
-        "Dockerfile",
-        ".env"
-    ],
+    "time": "25 minutes",
     "details": {
         "steps": [
             {
-                "title": "Passando variáveis com -e",
+                "title": "Primeiros passos no terminal",
                 "text": "step1.md"
             },
             {
-                "title": "Usando um arquivo .env",
+                "title": "Navegando pelo sistema de arquivos",
                 "text": "step2.md"
             },
             {
-                "title": "ENV no Dockerfile",
+                "title": "Criando e manipulando arquivos",
                 "text": "step3.md"
             },
             {
-                "title": "ARG vs ENV",
+                "title": "Lendo arquivos",
                 "text": "step4.md"
             },
             {
-                "title": "Configurando ambientes diferentes",
+                "title": "Editando com nano",
                 "text": "step5.md"
             }
         ],
@@ -39,7 +34,7 @@
         }
     },
     "environment": {
-        "uilayout": "editor-terminal"
+        "uilayout": "terminal"
     },
     "backend": {
         "imageid": "ubuntu"

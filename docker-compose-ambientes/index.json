@@ -1,5 +1,5 @@
 {
-    "title": "Docker Compose: Dev vs Produção",
+    "title": "04 - Docker Compose: Dev vs Produção",
     "description": "Use múltiplos arquivos Compose para configurar ambientes diferentes",
     "difficulty": "intermediate",
     "time": "25 minutes",

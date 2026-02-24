@@ -29,4 +29,12 @@ As colunas mais importantes são:
 | **PORTS** | Portas expostas |
 | **NAMES** | Nome do container |
 
-Note que nosso container está rodando, mas a coluna **PORTS** está vazia — o container está isolado da sua máquina e ainda não é acessível externamente. Vamos resolver isso no próximo passo.
+Note que a coluna **PORTS** mostra `80/tcp` — isso significa que o nginx anuncia internamente que escuta na porta 80 (declarado na imagem com a instrução `EXPOSE`).
+
+Esse mapeamento existe apenas **dentro da máquina host**. Você pode acessar o container pelo seu IP interno:
+
+`docker inspect meu-nginx -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'`{{execute}}
+
+`curl http://$(docker inspect meu-nginx -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}')`{{execute}}
+
+O nginx responde! Porém, esse acesso funciona **apenas de dentro da própria máquina**. De fora — outro computador, um navegador externo — a porta não está acessível. Para isso, precisamos mapear a porta explicitamente, o que veremos no próximo passo.

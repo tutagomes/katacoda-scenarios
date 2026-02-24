@@ -1,5 +1,5 @@
 {
-    "title": "Docker Compose: Múltiplos Serviços",
+    "title": "02 - Docker Compose: Múltiplos Serviços",
     "description": "Orquestre uma API .NET com Redis usando Docker Compose",
     "difficulty": "easy",
     "time": "25 minutes",

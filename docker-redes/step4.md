@@ -18,9 +18,9 @@ Uma das propriedades mais importantes das redes Docker é o **isolamento**: cont
 
 O container `front` na `rede-front` **não deve conseguir** alcançar o container `back` na `rede-back`:
 
-`docker run --rm --network rede-front alpine ping -c 2 back`{{execute}}
+`docker run --rm --network rede-front alpine wget -q -T 3 -O- http://back`{{execute}}
 
-Como esperado: falha. O container `back` simplesmente não existe para quem está na `rede-front`.
+Como esperado: falha com timeout. O container `back` simplesmente não existe para quem está na `rede-front` — o DNS interno não resolve nomes de outras redes.
 
 ### Criando uma ponte entre as redes
 
