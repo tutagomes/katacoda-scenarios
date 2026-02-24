@@ -22,6 +22,16 @@ docker logs <nome>                  # Exibe os logs do container
 docker logs -f <nome>               # Logs em tempo real
 ```
 
+**Inspeção:**
+
+```bash
+docker history <imagem>:<tag>       # Mostra as camadas da imagem e seus tamanhos
+docker history --no-trunc <imagem>  # Camadas com comandos completos (sem truncar)
+docker inspect <imagem>:<tag>       # JSON completo com toda a configuração da imagem
+docker inspect --format='...' <img> # Filtra campos específicos do inspect
+docker image prune -a               # Remove todas as imagens não utilizadas
+```
+
 **Referência rápida das instruções do Dockerfile:**
 
 ```dockerfile
@@ -31,6 +41,7 @@ COPY <origem> <destino>                # Copia arquivos da máquina para a image
 RUN <comando>                          # Executa comando durante o build
 EXPOSE <porta>                         # Documenta a porta que a aplicação usa
 ENV VARIAVEL=valor                     # Define variável de ambiente
+LABEL chave="valor"                    # Adiciona metadados à imagem
 CMD ["arg"]                            # Argumentos padrão (substituível no docker run)
 ENTRYPOINT ["executavel"]              # Executável fixo do container
 HEALTHCHECK --interval=30s CMD <cmd>   # Verifica saúde da aplicação periodicamente

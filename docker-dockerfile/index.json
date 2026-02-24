@@ -2,7 +2,7 @@
     "title": "[Docker 02] - Criando sua primeira imagem",
     "description": "Aprenda a escrever um Dockerfile e construir sua própria imagem Docker",
     "difficulty": "easy",
-    "time": "25 minutes",
+    "time": "35 minutes",
     "files": [
         "package.json",
         "server.js",
@@ -33,6 +33,10 @@
             {
                 "title": "Montando um volume",
                 "text": "step6.md"
+            },
+            {
+                "title": "Inspecionando a imagem",
+                "text": "step7.md"
             }
         ],
         "intro": {

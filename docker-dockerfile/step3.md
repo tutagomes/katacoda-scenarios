@@ -2,7 +2,11 @@
 
 Agora vamos criar o Dockerfile que vai transformar nossa aplicação em uma imagem Docker.
 
-<pre class="file" data-filename="Dockerfile" data-target="replace">
+```sh
+touch Dockerfile
+```{{exec}}
+
+```dockerfile
 FROM node:alpine
 
 WORKDIR /usr/src/app
@@ -16,7 +20,7 @@ COPY . .
 EXPOSE 8080
 
 CMD ["node", "server.js"]
-</pre>
+```{{copy}}
 
 ### Entendendo cada linha
 

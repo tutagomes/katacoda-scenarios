@@ -6,26 +6,38 @@ Vamos criar uma pequena aplicação Node.js que será o conteúdo da nossa image
 
 Crie o arquivo `package.json` com as dependências da aplicação:
 
-<pre class="file" data-filename="package.json" data-target="replace">
+```
+touch package.json
+```{{exec}}
+
+```
 {
   "name": "minha-app-docker",
   "version": "1.0.0",
-  "description": "Minha primeira aplicação em um container Docker",
-  "main": "server.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
   "dependencies": {
-    "express": "^4.18.0"
+    "express": "^5.2.1"
   }
 }
-</pre>
+```{{copy}}
 
 ### Criando o servidor
 
-Agora crie o arquivo `server.js`:
+Agora crie o arquivo `server.js` com o conteúdo:
 
-<pre class="file" data-filename="server.js" data-target="replace">
+```
+touch server.js
+```{{exec}}
+
+````js
 'use strict';
 
 const express = require('express');
@@ -37,6 +49,8 @@ const HOST = '0.0.0.0';
 const app = express();
 
 app.get('/', (req, res) => {
+  
+  console.log('Requisicao recebida')
   res.send(`
     <h1>Olá, Docker!</h1>
     <p>Esta resposta veio de dentro do container.</p>
@@ -47,7 +61,7 @@ app.get('/', (req, res) => {
 app.listen(PORT, HOST, () => {
   console.log(`Servidor rodando em http://${HOST}:${PORT}`);
 });
-</pre>
+````{{copy}}
 
 O `os.hostname()` retorna o ID do container — isso vai ser interessante de ver quando rodarmos a aplicação.
 
