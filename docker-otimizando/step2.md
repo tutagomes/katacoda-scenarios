@@ -47,6 +47,8 @@ RUN apt-get update && \
 
 ### Aplicando as boas práticas
 
+Vamos reescrever o Dockerfile aplicando tudo que vimos: imagem base Alpine (muito menor que `node:latest`), `package.json` copiado separadamente para aproveitar o cache, e `--omit=dev` para instalar apenas dependências de produção.
+
 ```Dockerfile
 FROM node:alpine
 

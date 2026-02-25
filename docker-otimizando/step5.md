@@ -10,11 +10,11 @@ Você deve ver algo parecido com isso:
 
 | Imagem | Tamanho aproximado |
 |---|---|
-| `app-sem-otimizacao` | ~950MB |
-| `app-boas-praticas` | ~60MB |
-| `app-multistage` | ~55MB |
+| `app-sem-otimizacao` | ~1.1GB |
+| `app-boas-praticas` | ~180MB |
+| `app-multistage` | ~180MB |
 
-A imagem final tem cerca de **94% menos** do que a original.
+A imagem final tem cerca de **90% menos** do que a original.
 
 ### Analisando as camadas da imagem otimizada
 

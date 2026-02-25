@@ -20,7 +20,17 @@ Vamos criar alguns arquivos que não deveriam ir para a imagem:
 
 `ls -la`{{execute}}
 
+### Verificando que as variáveis e logs estão no contêiner
+
+`docker build -t app-sem-dockerignore .`{{execute}}
+
+`docker run --rm app-sem-dockerignore ls -la`{{execute}}
+
+Veja que eles estão presentes. Vamos ver agora como removê-los automaticamente.
+
 ### Criando o .dockerignore
+
+`touch .dockerignore`{{execute}}
 
 ```dockerignore
 # Dependências (serão instaladas no build)
@@ -32,6 +42,8 @@ npm-debug.log
 .env.*
 *.pem
 *.key
+
+.ssh
 
 # Logs
 *.log
@@ -56,8 +68,6 @@ coverage/
 Faça o build novamente e observe o contexto enviado:
 
 `docker build -t app-com-dockerignore .`{{execute}}
-
-Na primeira linha do output, o Docker informa o tamanho do contexto: `Sending build context to Docker daemon X.XX kB`. Compare com o build anterior — deve ser significativamente menor.
 
 ### Confirmando que o .env não está na imagem
 

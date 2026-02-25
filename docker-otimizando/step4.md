@@ -20,6 +20,8 @@ Estágio de BUILD:          Estágio de PRODUÇÃO:
 
 Vamos simular uma aplicação que precisa de uma etapa de "build" antes de rodar:
 
+`touch Dockerfile.otimizado`{{execute}}
+
 ```Dockerfile
 # ── Estágio 1: dependências e build ──────────────────────────────
 FROM node:latest AS builder

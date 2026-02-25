@@ -24,7 +24,7 @@ console.log('Rodando na porta 3000');
 
 ```json
 {
-  "name": "teste",
+  "name": "meu-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -37,6 +37,11 @@ console.log('Rodando na porta 3000');
   "type": "commonjs",
   "dependencies": {
     "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.4",
+    "jest": "^30.2.0",
+    "nodemon": "^3.1.14"
   }
 }
 ```{{copy}}
@@ -64,7 +69,7 @@ CMD ["node", "server.js"]
 
 `docker build -t app-sem-otimizacao .`{{execute}}
 
-`docker images app-sem-otimizacao`{{execute}}
+`docker images `{{execute}}
 
 Anote o tamanho da imagem. Provavelmente está acima de **1GB** — para uma aplicação que tem apenas dois arquivos e faz uma coisa simples!
 
