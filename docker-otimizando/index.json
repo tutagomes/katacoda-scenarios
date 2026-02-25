@@ -15,11 +15,11 @@
                 "text": "step1.md"
             },
             {
-                "title": ".dockerignore",
+                "title": "Boas práticas no Dockerfile",
                 "text": "step2.md"
             },
             {
-                "title": "Boas práticas no Dockerfile",
+                "title": ".dockerignore",
                 "text": "step3.md"
             },
             {
@@ -40,6 +40,9 @@
     },
     "environment": {
         "uilayout": "editor-terminal"
+    },
+    "interface": {
+        "layout": "ide"
     },
     "backend": {
         "imageid": "ubuntu"

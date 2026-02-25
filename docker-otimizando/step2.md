@@ -1,64 +1,72 @@
-## .dockerignore
+## Boas práticas no Dockerfile
 
-Quando você executa `docker build`, o Docker envia para o daemon todos os arquivos da pasta atual — o chamado **contexto de build**. Isso acontece mesmo que esses arquivos não sejam usados no Dockerfile.
+No step anterior vimos que uma imagem simples pode passar de 1GB. A maior parte desse peso vem de escolhas no Dockerfile que podemos melhorar.
 
-Em projetos reais, essa pasta pode conter `node_modules` (centenas de MB), arquivos de log, credenciais, cache e código de testes. Tudo isso é transferido desnecessariamente.
+### 1. Use imagens base menores
 
-O `.dockerignore` funciona exatamente como o `.gitignore`: lista padrões de arquivos e pastas que **não** devem ser incluídos no contexto de build.
+A primeira e mais impactante otimização é trocar a imagem base:
 
-### Simulando o problema
+| Imagem | Tamanho aproximado |
+|---|---|
+| `node:latest` | ~1GB |
+| `node:slim` | ~250MB |
+| `node:alpine` | ~50MB |
 
-Vamos criar alguns arquivos que não deveriam ir para a imagem:
+O Alpine Linux é uma distribuição minimalista com apenas o essencial para rodar sua aplicação.
 
-`mkdir -p node_modules && echo "simulando dependencias" > node_modules/fake.txt`{{execute}}
+### 2. Copie o package.json antes do código
 
-`echo "senha-super-secreta" > .env`{{execute}}
+Já vimos isso no cenário de criação de imagens, mas vale reforçar aqui como prática de otimização de build:
 
-`echo "log de desenvolvimento" > debug.log`{{execute}}
+```dockerfile
+# ✅ Certo — npm install só roda de novo se o package.json mudar
+COPY package*.json ./
+RUN npm install
+COPY . .
 
-`ls -la`{{execute}}
+# ❌ Errado — qualquer mudança no código invalida o cache do npm install
+COPY . .
+RUN npm install
+```
 
-### Criando o .dockerignore
+### 3. Combine RUNs relacionados
 
-<pre class="file" data-filename=".dockerignore" data-target="replace">
-# Dependências (serão instaladas no build)
-node_modules
-npm-debug.log
+Cada instrução `RUN` cria uma camada. Camadas de limpeza em `RUN`s separados não eliminam o arquivo das camadas anteriores:
 
-# Variáveis de ambiente e segredos
-.env
-.env.*
-*.pem
-*.key
+```dockerfile
+# ❌ Errado — o arquivo existe na camada anterior mesmo após o rm
+RUN apt-get update
+RUN apt-get install -y curl
+RUN rm -rf /var/lib/apt/lists/*
 
-# Logs
-*.log
-logs/
+# ✅ Certo — tudo na mesma camada, o arquivo nunca existiu nas camadas anteriores
+RUN apt-get update && \
+    apt-get install -y curl && \
+    rm -rf /var/lib/apt/lists/*
+```
 
-# Arquivos de desenvolvimento
-.git
-.gitignore
-README.md
-.vscode
-.idea
+### Aplicando as boas práticas
 
-# Arquivos de teste
-*.test.js
-test/
-tests/
-coverage/
-</pre>
+```Dockerfile
+FROM node:alpine
 
-### Verificando o impacto
+WORKDIR /usr/src/app
 
-Faça o build novamente e observe o contexto enviado:
+COPY package*.json ./
 
-`docker build -t app-com-dockerignore .`{{execute}}
+RUN npm install --omit=dev
 
-Na primeira linha do output, o Docker informa o tamanho do contexto: `Sending build context to Docker daemon X.XX kB`. Compare com o build anterior — deve ser significativamente menor.
+COPY . .
 
-### Confirmando que o .env não está na imagem
+EXPOSE 3000
 
-`docker run --rm app-com-dockerignore ls -la`{{execute}}
+CMD ["node", "server.js"]
+```{{copy}}
 
-O arquivo `.env` não está lá — ele foi excluído do contexto antes mesmo de chegar ao Dockerfile. Isso é uma camada de proteção importante.
+Note também o `--omit=dev`: instala apenas dependências de produção, excluindo ferramentas de desenvolvimento.
+
+`docker build -t app-boas-praticas .`{{execute}}
+
+`docker images`{{execute}}
+
+Compare o tamanho de `app-sem-otimizacao` vs `app-boas-praticas`. A redução deve ser considerável só com essas mudanças.

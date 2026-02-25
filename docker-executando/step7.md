@@ -48,6 +48,6 @@ Para limpar tudo de uma vez (containers parados, redes e imagens sem uso):
 
 ### Encerrando os containers deste cenário
 
-`docker rm -f nginx-explorer nginx-web nginx-web2`{{execute}}
+`docker rm -f nginx-explorer nginx-web nginx-web2 nginx-sempre`{{execute}}
 
 `docker ps -a`{{execute}}

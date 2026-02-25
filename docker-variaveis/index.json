@@ -41,6 +41,9 @@
     "environment": {
         "uilayout": "editor-terminal"
     },
+    "interface": {
+        "layout": "ide"
+    },
     "backend": {
         "imageid": "ubuntu"
     }

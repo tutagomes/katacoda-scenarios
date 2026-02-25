@@ -14,7 +14,8 @@ docker cp nome-container:/caminho/dentro/container ./arquivo.txt
 
 Vamos criar uma página HTML personalizada e substituir a página padrão do nginx:
 
-`cat > index.html << 'EOF'
+```bash
+cat > index.html << 'EOF'
 <!DOCTYPE html>
 <html>
 <head><title>Meu Nginx no Docker</title></head>
@@ -23,7 +24,7 @@ Vamos criar uma página HTML personalizada e substituir a página padrão do ngi
   <p>Este arquivo foi copiado para dentro do container com <code>docker cp</code>.</p>
 </body>
 </html>
-EOF`{{execute}}
+EOF```{{execute}}
 
 Agora copie o arquivo para o diretório de arquivos estáticos do nginx dentro do container:
 

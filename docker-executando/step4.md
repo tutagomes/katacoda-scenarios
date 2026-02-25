@@ -44,17 +44,28 @@ Existem quatro políticas disponíveis:
 - **`always`** — serviços que precisam estar sempre no ar, mesmo após o reboot do servidor.
 - **`unless-stopped`** — o comportamento mais previsível para produção: reinicia automaticamente, mas respeita uma parada manual intencional.
 
-Teste parando e reiniciando o container para ver a política em ação:
+Teste com um container que crasha sozinho — ele inicia, aguarda 3 segundos e sai com erro:
 
-`docker stop nginx-sempre`{{execute}}
+`docker run -d --name crash-test --restart always alpine sh -c "echo 'Iniciando...'; sleep 3; exit 1"`{{execute}}
 
-`docker ps -a`{{execute}}
+O que esse container faz:
+1. Imprime `Iniciando...` no log
+2. Espera 3 segundos (`sleep 3`)
+3. Encerra com código de erro 1 (`exit 1`) — simulando um crash da aplicação
 
-`docker start nginx-sempre`{{execute}}
+Como usamos `--restart always`, o Docker vai detectar que o processo saiu com falha e reiniciar o container automaticamente.
 
-`docker ps -a`{{execute}}
+Aguarde uns segundos e verifique:
 
-`docker rm -f nginx-sempre`{{execute}}
+`sleep 5 && docker ps`{{execute}}
+
+O container está rodando novamente! Olhe a coluna `STATUS` — algo como `Up 1 second` — e a coluna `RESTARTS` mostrando quantas vezes ele já reiniciou. Espere mais um pouco e veja o contador aumentar:
+
+`sleep 5 && docker ps`{{execute}}
+
+O Docker detecta que o processo principal saiu com código de erro e, por causa da política `always`, traz o container de volta automaticamente — quantas vezes for necessário.
+
+`docker rm -f crash-test`{{execute}}
 
 ### Removendo containers
 

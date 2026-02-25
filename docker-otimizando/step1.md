@@ -4,7 +4,9 @@ Antes de otimizar, vamos entender o problema. Vamos criar uma imagem intencional
 
 ### Criando uma aplicação simples
 
-<pre class="file" data-filename="server.js" data-target="replace">
+`touch server.js`{{execute}}
+
+```js
 'use strict';
 const http = require('http');
 
@@ -15,22 +17,36 @@ const server = http.createServer((req, res) => {
 
 server.listen(3000, '0.0.0.0');
 console.log('Rodando na porta 3000');
-</pre>
+```{{copy}}
 
-<pre class="file" data-filename="package.json" data-target="replace">
+
+`touch package.json`{{execute}}
+
+```json
 {
-  "name": "app-otimizacao",
+  "name": "teste",
   "version": "1.0.0",
-  "main": "server.js",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
   "dependencies": {
-    "express": "^4.18.0"
+    "express": "^5.2.1"
   }
 }
-</pre>
+```{{copy}}
 
 ### Um Dockerfile sem boas práticas
 
-<pre class="file" data-filename="Dockerfile" data-target="replace">
+`touch Dockerfile`{{execute}}
+
+
+```Dockerfile
 FROM node:latest
 
 WORKDIR /app
@@ -42,7 +58,7 @@ RUN npm install
 EXPOSE 3000
 
 CMD ["node", "server.js"]
-</pre>
+```{{copy}}
 
 ### Fazendo o build e medindo o tamanho
 
@@ -50,7 +66,7 @@ CMD ["node", "server.js"]
 
 `docker images app-sem-otimizacao`{{execute}}
 
-Anote o tamanho da imagem. Provavelmente está acima de **900MB** — para uma aplicação que tem apenas dois arquivos e faz uma coisa simples!
+Anote o tamanho da imagem. Provavelmente está acima de **1GB** — para uma aplicação que tem apenas dois arquivos e faz uma coisa simples!
 
 ### Visualizando as camadas e o que engorda a imagem
 

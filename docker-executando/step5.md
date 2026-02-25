@@ -49,4 +49,7 @@ Para acompanhar os logs ao vivo (equivalente ao `tail -f`):
 
 `docker logs -f nginx-explorer`{{execute}}
 
+Acesse pelo browser: [Abrir na porta 8082]({{TRAFFIC_HOST1_8080}}) para visualizar a entrada nos logs.
+
+
 Pressione `Ctrl+C` para parar de acompanhar. O container continua rodando normalmente.

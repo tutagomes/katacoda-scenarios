@@ -49,8 +49,7 @@ const HOST = '0.0.0.0';
 const app = express();
 
 app.get('/', (req, res) => {
-  
-  console.log('Requisicao recebida')
+  console.log('Requisição recebida em', new Date().toISOString());
   res.send(`
     <h1>Olá, Docker!</h1>
     <p>Esta resposta veio de dentro do container.</p>

@@ -20,7 +20,7 @@ Estágio de BUILD:          Estágio de PRODUÇÃO:
 
 Vamos simular uma aplicação que precisa de uma etapa de "build" antes de rodar:
 
-<pre class="file" data-filename="Dockerfile.otimizado" data-target="replace">
+```Dockerfile
 # ── Estágio 1: dependências e build ──────────────────────────────
 FROM node:latest AS builder
 
@@ -48,7 +48,8 @@ COPY --from=builder /build/server.js .
 EXPOSE 3000
 
 CMD ["node", "server.js"]
-</pre>
+```{{copy}}
+
 
 ### Fazendo o build multi-stage
 

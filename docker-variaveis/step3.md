@@ -8,7 +8,7 @@ Vamos criar uma aplicação Node.js que usa variáveis de ambiente para se confi
 
 ```sh
 touch server.js
-```{{copy}
+```{{copy}}
 
 ```js
 'use strict';
@@ -36,7 +36,7 @@ server.listen(PORT, '0.0.0.0', () => {
 
 ```sh
 touch Dockerfile
-```{{copy}
+```{{copy}}
 
 ```Dockerfile
 FROM node:alpine
@@ -68,7 +68,7 @@ Note que usamos `EXPOSE $PORT` — o Docker substitui o valor da variável no mo
 
 Os valores do `ENV` no Dockerfile são apenas **padrões** — eles podem ser sobrescritos com `-e` no `docker run`:
 
-`docker run --name app-prod -d -p 3001:3000 -e APP_ENV=producao -e MENSAGEM="Bem-vindo à produção!" app-variaveis`{{execute}}
+`docker run --name app-prod -d -p 3001:3001 -e PORT=3001 -e APP_ENV=producao -e MENSAGEM="Bem-vindo à produção!" app-variaveis`{{execute}}
 
 [Abrir na porta 3001]({{TRAFFIC_HOST1_3001}})
 

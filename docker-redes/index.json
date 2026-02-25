@@ -32,6 +32,9 @@
     "environment": {
         "uilayout": "terminal"
     },
+    "interface": {
+        "layout": "ide"
+    },
     "backend": {
         "imageid": "ubuntu"
     }
